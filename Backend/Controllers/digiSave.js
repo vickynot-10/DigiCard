@@ -1,12 +1,24 @@
 import { DigiModel } from "../Models/DigiCardmodel.js";
+import { UsersAuthModel } from "../Models/UsersAuth.js";
+
 import path from 'path';
+
 export const SaveDigiDetails = async(req,res)=>{
+
     let data1 = req.body
     let fileVar = req.file
-    console.log(fileVar,data1)
     let filePath
     if(fileVar === null || !fileVar  ){
         filePath = "Didnt upload an img"
+    }
+
+    let user = await UsersAuthModel.findOne({
+        _id : req.user._id
+     })
+    if(!user){
+        return res.status(400).json({
+            isloggedin : false , msg : 'Please Login and try again'
+        })
     }
     
     if(fileVar !== null && fileVar ){
@@ -16,6 +28,7 @@ export const SaveDigiDetails = async(req,res)=>{
     }
 
     try{
+
         let db = new DigiModel({
             name : data1.personName,
             phone : data1.mobile,
@@ -33,11 +46,14 @@ export const SaveDigiDetails = async(req,res)=>{
             youtube : data1.youtube
         })
 
-         await db.save()
-            return res.status(200).json({
-                isDone : true , msg : 'Created Successfully' , id : db._id.toString()
-            })
+        const savedCard = await db.save();
+
+        user.Cards.push(savedCard._id);
+        await user.save();
         
+        return res.status(200).json({
+                isDone : true , msg : 'Created Successfully' , id : db._id.toString()
+        })
 
     }catch(e){
         console.log(e)

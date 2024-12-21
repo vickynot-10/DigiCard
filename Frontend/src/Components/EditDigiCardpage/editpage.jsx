@@ -170,7 +170,7 @@ export default function EditPage() {
           {!editData.data.img.startsWith("Didnt") && (
             <img
               src={`${process.env.REACT_APP_URL}/imgs${editData.data.img}`}
-              alt="picture"
+              alt="company-picture"
             />
           )}
 

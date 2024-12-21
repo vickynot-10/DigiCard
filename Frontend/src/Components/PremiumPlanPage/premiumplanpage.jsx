@@ -89,7 +89,6 @@ export default function PremiumPlanPage() {
   }
 
   function redirectToWeb() {
-    console.log("btn clicks")
     if(details.companyname.trim() === '' && isChecked === false ){
       navigate(`/getDigi/personal/${resdata.Userid}`);
       return

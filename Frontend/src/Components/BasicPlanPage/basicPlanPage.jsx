@@ -100,7 +100,6 @@ export default function BasicplanPage() {
           withCredentials: true,
         }
       );
-      console.log(res)
       if (res.data.isDone === true) {
         setResData({
           isOK: true,
@@ -110,7 +109,6 @@ export default function BasicplanPage() {
         setErrfalse();
       }
     } catch (e) {
-      console.log(e)
       let errMsg = e.message || "An error occured";
 
       if (e.response) {

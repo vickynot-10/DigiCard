@@ -35,7 +35,7 @@ export default function PageRoutes(){
         
         <Route path="/" element={<Home />} />
         <Route path="/create-card" element={<PlanChose />} />
-        <Route path="/basic-plan" element={<BasicplanPage />} />
+        <Route path="/basic-plan" element={ <ProtectedRoute> <BasicplanPage /> </ProtectedRoute> } />
         <Route path="/premium-plan" element={ <ProtectedRoute> <PremiumPlanPage /> </ProtectedRoute> } />
         <Route path="/getDigi/:companyName/:id" element={  <ProtectedRoute> <BasicPlanDisplayDetails />  </ProtectedRoute> } />
         <Route path="/editDigi/:companyName/:id" element={ <ProtectedRoute> <EditPageComponent /> </ProtectedRoute> } />
