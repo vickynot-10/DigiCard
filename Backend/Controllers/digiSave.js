@@ -3,6 +3,7 @@ import path from 'path';
 export const SaveDigiDetails = async(req,res)=>{
     let data1 = req.body
     let fileVar = req.file
+    console.log(fileVar,data1)
     let filePath
     if(fileVar === null || !fileVar  ){
         filePath = "Didnt upload an img"
@@ -39,6 +40,7 @@ export const SaveDigiDetails = async(req,res)=>{
         
 
     }catch(e){
+        console.log(e)
         return res.status(400).json({
             isErr : true , msg : e.message || "Internal Server Error"
         })

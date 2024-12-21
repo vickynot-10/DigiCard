@@ -66,8 +66,11 @@ export default function EditUserCard() {
     async function fetchData() {
       try {
         let res = await axios.get(
-          `${process.env.REACT_APP_URL}/editUser/${id}`
+          `${process.env.REACT_APP_URL}/editUser/${id}` , {withCredentials : true}
         );
+        if(!res){
+          throw new Error("Error occured")
+        }
         if (res.data.isFound === true) {
           seteditdata({
             isFound: true,

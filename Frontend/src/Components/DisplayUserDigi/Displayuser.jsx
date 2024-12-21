@@ -82,7 +82,12 @@ export default function DisplayUserDigi() {
     }
     async function fetchData() {
       try {
-        let res = await axios.get(`${process.env.REACT_APP_URL}/showUser/${companyName}/${id}`);
+        let res = await axios.get(`${process.env.REACT_APP_URL}/showUser/${companyName}/${id}`,{
+          withCredentials : true
+        });
+        if(!res){
+          throw new Error("Error occured")
+        }
         if (res.data.isFound === true) {
           setResData({
             isFound: true,
@@ -124,8 +129,10 @@ export default function DisplayUserDigi() {
           {resData.isFound && (
             <div id="bp-comp-contents" ref={divCapture}>
               <div id="bp-section1-page">
-                {(!imgaddress.includes("Didnt") || imgaddress !== undefined || imgaddress !== null) && (
+                {( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null) && (
+                  
                   <div id="bp-logo-div">
+                    {console.log(imgaddress)}
                     <picture>
                       <source type="image/webp" srcSet={`${process.env.REACT_APP_URL}/imgs${imgaddress}`} />
                       <img

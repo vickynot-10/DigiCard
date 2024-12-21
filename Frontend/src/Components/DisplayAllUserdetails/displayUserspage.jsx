@@ -31,7 +31,9 @@ export default function DisplayAllUsers() {
       }
       try {
         let res = await axios.get(
-          `${process.env.REACT_APP_URL}/${companyName}/getUserDigi`
+          `${process.env.REACT_APP_URL}/${companyName}/getUserDigi`,{
+            withCredentials : true
+          }
         );
         if (!res) {
           throw new Error("Error Occured");

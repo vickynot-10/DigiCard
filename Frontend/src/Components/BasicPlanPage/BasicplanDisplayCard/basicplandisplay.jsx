@@ -68,6 +68,7 @@ export default function BasicPlanDisplayDetails() {
 
   useEffect(() => {
     if (id === null || !id || id === "null") {
+      console.log(id)
       seterrobj({
         iserr: true,
         msg: "Error occured Please Try again",
@@ -76,7 +77,12 @@ export default function BasicPlanDisplayDetails() {
     }
     async function fetchData() {
       try {
-        let res = await axios.get(`${process.env.REACT_APP_URL}/getDigi/${companyName}/${id}`);
+        let res = await axios.get(`${process.env.REACT_APP_URL}/getDigi/${companyName}/${id}`,{
+          withCredentials : true
+        });
+        if(!res){
+          throw new Error("Error occured pls try again")
+        }
         if (res.data.isfound === true) {
           setResData({
             isFound: true,
@@ -124,22 +130,22 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
                 <div id="bp-contents-div-user">
-                  {resData.data.Companyname.trim() !== "" && (
+                  {(resData.data.Companyname.trim() !== "" && resData.data.Companyname !== undefined ) && (
                     <p id="company-name-bp">
                       {resData.data.Companyname }
                     </p>
                   )}
-                  {resData.data.name.trim() !== ""  && (
+                  { ( resData.data.name.trim() !== "" && resData.data.name !== undefined ) && (
                     <p id="user-name-bp">{resData.data.name}</p> 
                   )}
-                  {resData.data.UserRole.trim() !== "" && (
+                  {( resData.data.UserRole.trim() !== "" && resData.data.UserRole !== undefined ) && (
                     <p id="userRole-bp">{resData.data.UserRole}</p>
                   )}
                 </div>
               </div>
 
               <div id="bp-social-link-section">
-                {resData.data.phone.trim() !== "" && (
+                { ( resData.data.phone.trim() !== "" && resData.data.phone !== undefined ) && (
                   <div id="sep-icon-div">
                     <a
                       href={`tel:${resData.data.phone}`}
@@ -155,7 +161,7 @@ export default function BasicPlanDisplayDetails() {
                     
                   </div>
                 )}
-                {resData.data.whatsapp.trim() !== "" && (
+                {( resData.data.whatsapp.trim() !== "" && resData.data.whatsapp !== undefined ) && (
                  
                   <div id="sep-icon-div">
                     <a
@@ -171,7 +177,7 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
 
-                {resData.data.mail.trim() !== "" && (
+                { ( resData.data.mail.trim() !== "" && resData.data.mail !== undefined ) && (
                   <div id="sep-icon-div">
                     <a
                       href={`mailto:${resData.data.mail}`}
@@ -185,7 +191,7 @@ export default function BasicPlanDisplayDetails() {
                     
                   </div>
                 )}
-                {resData.data.location.trim() !== "" && (
+                { ( resData.data.location.trim() !== "" && resData.data.location !== undefined ) && (
                   <div id="sep-icon-div">
                     <a
                       href={`https://www.google.com/maps?q=${encodeURIComponent(
@@ -204,7 +210,7 @@ export default function BasicPlanDisplayDetails() {
               </div>
 
               <div id="bp-social-link-description">
-                {resData.data.phone.trim() !== "" && (
+                { ( resData.data.phone.trim() !== "" && resData.data.phone !== undefined ) && (
                   <div id="sep-icon-div-col">
                     <a
                       href={`tel:${resData.data.phone}`}
@@ -219,7 +225,7 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
 
-                {resData.data.website.trim() !== "" && (
+                { ( resData.data.website.trim() !== "" && resData.data.website !== undefined ) && (
                   <div id="sep-icon-div-col">
                     <a
                       href={ ( resData.data.website.startsWith('http://') || resData.data.website.startsWith('https://') ) ? resData.data.website : `https://${resData.data.website}` }
@@ -234,7 +240,7 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
 
-                {resData.data.whatsapp.trim() !== "" && (
+                { ( resData.data.whatsapp.trim() !== "" && resData.data.whatsapp !== undefined ) && (
                   <div id="sep-icon-div-col">
                     <a
                       href={`https://wa.me/91${resData.data.whatsapp}`}
@@ -249,7 +255,7 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
 
-                {resData.data.mail.trim() !== "" && (
+                { ( resData.data.mail.trim() !== "" && resData.data.mail !== undefined ) && (
                   <div id="sep-icon-div-col">
                     <a
                       href={`mailto:${resData.data.mail}`}
@@ -264,7 +270,7 @@ export default function BasicPlanDisplayDetails() {
                   </div>
                 )}
 
-                {resData.data.location.trim() !== "" && (
+                { ( resData.data.location.trim() !== "" && resData.data.location !== undefined ) && (
                   <div id="sep-icon-div-col">
                     <a
                       href={`https://www.google.com/maps?q=${encodeURIComponent(
@@ -302,7 +308,7 @@ export default function BasicPlanDisplayDetails() {
                 </div>
 
                 <div id="premium-social-links">
-                  {resData.data.linkedin !== undefined &&
+                  { resData.data.linkedin !== undefined &&
                     resData.data.linkedin?.trim() !== "" && (
                       <div>
                         <a

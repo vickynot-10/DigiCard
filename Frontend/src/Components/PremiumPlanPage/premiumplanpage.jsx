@@ -89,6 +89,7 @@ export default function PremiumPlanPage() {
   }
 
   function redirectToWeb() {
+    console.log("btn clicks")
     if(details.companyname.trim() === '' && isChecked === false ){
       navigate(`/getDigi/personal/${resdata.Userid}`);
       return
@@ -154,7 +155,7 @@ export default function PremiumPlanPage() {
                 id="companyname"
                 onChange={savingDetails}
                 name="companyname"
-                required
+                // required
                 value={details.companyname}
                 placeholder={isChecked ? "Enter Company Name" : "Enter Name"}
               />
@@ -164,7 +165,7 @@ export default function PremiumPlanPage() {
               <input
                 type="text"
                 id="clientname"
-                required = {isChecked}
+                // required = {isChecked}
                 onChange={savingDetails}
                 name="personName"
                 value={details.personName}

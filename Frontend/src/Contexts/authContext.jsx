@@ -1,12 +1,12 @@
 import { useContext,createContext,useState,useEffect } from "react";
 import axios from 'axios';
-
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({children})=>{
     const [isLoggedUserin,setUserLoggedIn] = useState({
         username : '' , isLoggedIn : false
     })
+    const [isLoading,setloading] =useState(true)
 
     useEffect(()=>{
         async function fetchdata() {
@@ -17,20 +17,26 @@ export const AuthContextProvider = ({children})=>{
                 if(!res){
                     throw new Error("Error occured");
                 }
-                console.log(res)
+                if(res.data.isloggedin === true){
+                    setUserLoggedIn({
+                        isLoggedIn : true , username : res.data.userdata.username
+                    })
+                }
             }catch(e){
-                console.log(e)
                 setUserLoggedIn({
                     username : '' , isLoggedIn : false
                 })
     
+            }
+            finally{
+                setloading(false)
             }
         }
         fetchdata()
     },[]);
 
     return (
-        <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn}} >
+        <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn,isLoading }} >
             {children}
         </AuthContext.Provider>
     )

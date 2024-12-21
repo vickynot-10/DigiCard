@@ -72,7 +72,9 @@ export default function EditPage() {
     async function fetchData() {
       try {
         let res = await axios.get(
-          `${process.env.REACT_APP_URL}/getDigi/${companyName}/${id}`
+          `${process.env.REACT_APP_URL}/getDigi/${companyName}/${id}`,{
+            withCredentials : true
+          }
         );
         if (res.data.isfound === true) {
           seteditdata({
