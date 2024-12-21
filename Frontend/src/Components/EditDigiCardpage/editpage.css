@@ -1,0 +1,93 @@
+#edit-page-container {
+  width: 100%;
+  margin-top: 40px;
+}
+#edit-page-div {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+}
+#edit-page-div img{
+    max-width: 400px;
+    object-fit: cover;
+    align-self: center;
+}
+
+#edit-page-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#edit-page-main div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 10px;
+}
+#edit-page-main div label {
+  text-transform: capitalize;
+  text-align: right;
+  margin: 30px 0px;
+  font-size: clamp(0.985rem, 1rem, 1.05rem);
+  font-weight: 500;
+}
+#edit-page-main div input[type="text"],
+#edit-page-main div input[type="email"],
+#edit-page-main div input[type="number"] {
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+}
+
+#submit-btn-bpp {
+  margin: 10px 0px;
+  width: 140px;
+  height: 65px;
+  align-self: center;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: 0.2s linear;
+}
+#submit-btn-bpp:hover {
+  background-color: #fff;
+  color: black;
+}
+#edit-page-div form {
+  display: flex;
+  flex-direction: column;
+}
+#preview-tag-link{
+  font-weight: 500;
+  font-size: 24px;
+  text-decoration: none;
+  align-self: center;
+  margin: 30px 0;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+#preview-tag-link:hover{
+  color: blue;
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  #edit-page-main {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: unset;
+  }
+  #preview-tag-link{
+    font-size: clamp(14px,16px,18px);
+  }
+}

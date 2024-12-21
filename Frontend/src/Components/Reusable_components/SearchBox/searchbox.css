@@ -1,0 +1,120 @@
+#input-div-contact {
+    width: 100%;
+    margin-top: 10px;
+    max-width: 340px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  #input-div-contact svg {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translate(-5%, -50%);
+  }
+  #input-div-contact input {
+    border: 2px solid #1877f214;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    padding-left: 36px;
+    height: 100%;
+    font-weight: 400;
+    font-size: clamp(0.9rem, 1rem, 1.05rem);
+    color: #1c252e;
+    line-height: 1.4375em;
+  }
+  
+  #input-div-contact input:hover {
+    border: 2px solid #1c252e;
+  }
+  
+  #input-div-contact input:focus {
+    outline: 0px;
+    border: 2px solid #1877f2;
+  }
+  
+  .svg-filter-btn,
+  #del-btn-search,
+  #rev-btn-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: unset;
+  }
+  .svg-filter-btn:hover,
+  #del-btn-search:hover,
+  #rev-btn-search:hover {
+    background-color: #f4f6f8;
+  }
+  
+  #filter-delete-div {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #filtericon-div {
+    position: relative;
+  }
+  .filter-display-box {
+    position: absolute;
+    top: 0%;
+    right: 50%;
+    transform: translate(-50%, 0%);
+    min-width: 150px;
+    min-height: 80px;
+  max-height: 150px;
+    padding: 4px;
+    margin: 0;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow-y: auto;
+    box-shadow: 0px 5px 5px -3px rgba(145 158 171 / 0.2),
+      0px 8px 10px 1px rgba(145 158 171 / 0.14),
+      0px 3px 14px 2px rgba(145 158 171 / 0.12);
+  }
+  .filter-display-box::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-display-box p {
+    padding: 6px;
+    margin: 0px;
+    text-align: left;
+    line-height: 1.5rem;
+    font-size: clamp(0.75rem, 0.875rem, 0.965rem);
+    color: #637381;
+    font-weight: 600;
+    background-color: #f4f6f8;
+  }
+  .filter-display-box button {
+    border: unset;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 5px 0;
+    font-weight: 500;
+    min-height: 50px;
+    height: auto;
+    padding: 5px;
+    background-color: transparent;
+    font-size: clamp(0.75rem, 0.875rem, 1rem);
+    line-height: 1.57143;
+    color: #1c252e;
+  }
+  
+  .filter-display-box button:hover{
+    background-color: #f4f6f8;
+  }

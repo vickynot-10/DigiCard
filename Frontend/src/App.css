@@ -1,0 +1,73 @@
+.App {
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+.button-59 {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-59:focus {
+  color: #171e29;
+}
+
+.button-59:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.button-59:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .button-59 {
+
+ 
+    overflow: hidden;
+    font-size: clamp(12px, 14px, 16px);
+    line-height: unset;
+    letter-spacing: unset;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .button-59 {
+   
+    
+    overflow: hidden;
+    font-size: clamp(12px, 14px, 16px);
+    line-height: unset;
+    letter-spacing: unset;
+  }
+}
+@media (min-width: 768px) {
+  .button-59 {
+    min-width: 170px;
+  }
+}

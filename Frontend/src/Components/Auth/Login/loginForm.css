@@ -1,0 +1,154 @@
+#loginform-container {
+  width: 100%;
+  overflow-y: hidden;
+  height: 100dvh;
+  background-image: url('../../../Assests/backgrounds/bg-01.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+#loginForm-main {
+  width: 100%;
+}
+#loginform {
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+#login-header p {
+  display: block;
+
+  padding-bottom: 40px;
+  font-weight: 800;
+  font-size: 39px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+#login-input-div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+#login-input-div label {
+  text-align: left;
+  margin-top: 10px;
+}
+#login-input-div div {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  transition: 0.2s all linear;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+  margin-bottom: 14px;
+}
+#login-input-div div:hover {
+  border-color: black;
+}
+
+#login-input-div input {
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.2;
+  border: unset;
+  outline: unset;
+  display: block;
+  width: 90%;
+  height: 55px;
+  background: transparent;
+  padding: 10px;
+}
+#forgot-pass-txt {
+  width: 80%;
+  text-align: right;
+}
+#forgot-pass-txt a {
+    text-decoration: none;
+  text-align: right;
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.7;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+#forgot-pass-txt a:hover {
+  color: #1976d2;
+}
+#login-btn-submit {
+  width: 80%;
+
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  align-items: center;
+  overflow: hidden;
+}
+#login-btn-submit button {
+  position: relative;
+  width: 100%;
+  padding: 20px 30px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 25px;
+  border: unset;
+  background-color: #a64bf4;;
+  color: white;
+  font-weight: 700;
+
+  font-size: clamp(1rem, 1.4rem, 1.6rem);
+}
+
+#login-btn-submit button:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+#login-btn-submit button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgb(202, 202, 211),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+#login-btn-submit button:hover:before {
+  left: 100%;
+}
+#signup-text-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+#signup-text-div a{
+    text-decoration: none;
+    color: #666666;
+  font-size: 14px;
+  line-height: 1.7;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+#signup-text-div a{
+    color: #1976d2;
+}
