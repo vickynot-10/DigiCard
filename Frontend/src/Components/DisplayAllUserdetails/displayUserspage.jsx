@@ -51,7 +51,6 @@ export default function DisplayAllUsers() {
         if (e.response) {
           errmsg = e.response.data;
         }
-        console.log(errmsg);
         setErrobj({
           isErr: true,
           msg: errmsg,

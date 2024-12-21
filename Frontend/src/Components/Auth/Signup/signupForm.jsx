@@ -6,8 +6,12 @@ import Loader from "../../Reusable_components/Loader/loader";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
+import { useAuth } from "../../../Contexts/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
+  const navigate = useNavigate()
+  const {setUserLoggedIn} = useAuth()
   const [userdetails, setUserdetails] = useState({
     mail: "",
     username: "",
@@ -52,18 +56,29 @@ export default function SignUpForm() {
         }
       let res = await axios.post(
         `${process.env.REACT_APP_URL}/signup`,
-        userdetails
+        userdetails ,{
+          withCredentials : true
+        }
       );
       if (!res) {
         throw new Error("An error occured Try Again");
       }
       if (res.data.isCreated === true) {
+        seterrFalse()
         setResData({
           isCreated: true,
           msg: res.data.msg,
         });
+        setUserLoggedIn({
+          isLoggedIn : true , username : userdetails.username
+        })
+        setTimeout(()=>{
+          navigate('/')
+          navigate(0);
+      },[4000])
       }
     } catch (e) {
+      setresfalse()
       let errmsg = e.message || "An Error occured";
       if (e.response) {
         errmsg = e.response.data;

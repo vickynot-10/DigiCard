@@ -1,5 +1,6 @@
 import { UsersAuthModel } from "../../Models/UsersAuth.js";
 import bcrypt from 'bcrypt';
+import { GenerateJWTtoken } from "../../Utils/generateToken.js";
 
 export const SignupDetails = async(req,res)=>{
     let data = req.body;
@@ -25,6 +26,14 @@ export const SignupDetails = async(req,res)=>{
             username : data.username , mail :data.mail , password : passwordHasing
         })
         await finaldata.save();
+        let token =GenerateJWTtoken(finaldata._id);
+        res.cookie('token',token , {
+            httpOnly : false ,
+            sameSite : 'lax',
+            secure: false,
+            maxAge: 2 * 60 * 60 * 1000,
+
+        })
         return res.status(200).json({
             isCreated : true , msg : "Created Successfully"
         })

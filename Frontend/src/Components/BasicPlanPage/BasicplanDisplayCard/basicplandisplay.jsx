@@ -68,7 +68,6 @@ export default function BasicPlanDisplayDetails() {
 
   useEffect(() => {
     if (id === null || !id || id === "null") {
-      console.log(id)
       seterrobj({
         iserr: true,
         msg: "Error occured Please Try again",

@@ -132,7 +132,6 @@ export default function DisplayUserDigi() {
                 {( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null) && (
                   
                   <div id="bp-logo-div">
-                    {console.log(imgaddress)}
                     <picture>
                       <source type="image/webp" srcSet={`${process.env.REACT_APP_URL}/imgs${imgaddress}`} />
                       <img
