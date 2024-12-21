@@ -4,9 +4,10 @@ import NavBar from "../NavBar/nav";
 import { lazy,Suspense } from "react";
 import Loader from "../Reusable_components/Loader/loader";
 
-//CONTEXTS
+// CONTEXTS
 
-import { PageContextProvider } from "../../Contexts/Pagehandling";
+import { AuthContextProvider } from "../../Contexts/authContext";
+
 
 //COMPONENTS
 const PlanChose = lazy(() => import("../PlanChose/planchose"));
@@ -25,7 +26,7 @@ export default function PageRoutes(){
     const location = useLocation();
     return (
         <>
-        <PageContextProvider>
+        <AuthContextProvider>
         <Suspense fallback={<Loader size={80} />} />
        
          {( location.pathname !== '/loginForm' && location.pathname !== '/signupForm' ) && <NavBar /> }
@@ -45,7 +46,7 @@ export default function PageRoutes(){
         <Route path="/editUser/:id" element={<EditUserCardComp />} />
         
       </Routes>
-      </PageContextProvider>
+      </AuthContextProvider>
         </>
     )
 }

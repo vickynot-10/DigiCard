@@ -1,48 +1,59 @@
-import express from 'express';
-import { SaveDigiDetails } from '../Controllers/digiSave.js';
-import { GetDigi } from '../Controllers/GetDigiDetails.js';
-import { upload } from '../Config/multer.js';
-import { EditDigi } from '../Controllers/EditDigi.js';
-import { GetUsersDigi } from '../Controllers/GetMemberDigiDetails.js';
+import express from "express";
+import { SaveDigiDetails } from "../Controllers/digiSave.js";
+import { GetDigi } from "../Controllers/GetDigiDetails.js";
+import { upload } from "../Config/multer.js";
+import { EditDigi } from "../Controllers/EditDigi.js";
+import { GetUsersDigi } from "../Controllers/GetMemberDigiDetails.js";
 
-import AddNewUser from '../Controllers/AddNewuser.js'
-import { getUsersBasedonCompany } from '../Controllers/GetUsersbasedonCompany.js';
+import AddNewUser from "../Controllers/AddNewuser.js";
+import { getUsersBasedonCompany } from "../Controllers/GetUsersbasedonCompany.js";
 
-import { GetUserDetailsEdit } from '../Controllers/GetUserDetailsforEdit.js';
+import { GetUserDetailsEdit } from "../Controllers/GetUserDetailsforEdit.js";
 
-import { UpdateUserDigi } from '../Controllers/UpdateUserDigi.js';
+import { UpdateUserDigi } from "../Controllers/UpdateUserDigi.js";
 
-import { SignupDetails } from '../Controllers/Auth/Signup.js';
-import { LoginDetails } from '../Controllers/Auth/Login.js';
+import { SignupDetails } from "../Controllers/Auth/Signup.js";
+import { LoginDetails } from "../Controllers/Auth/Login.js";
 
+import { verifyJWTtoken } from "../Middlewares/verifyJWT.js";
+import { UsersCheckAuth } from "../Controllers/Auth/Userauthcheck.js";
 
-import path , {dirname} from 'path'
-import { fileURLToPath } from 'url';
+import cookieParser from "cookie-parser";
+
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 const route = express.Router();
-const app =express();
+const app = express();
+app.use(cookieParser());
 
-const filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(filename);
 app.use(express.json());
-app.use(express.urlencoded({extended : true}))
-
-app.use('/imgs',express.static(path.join(__dirname + '/FileUploads') ));
+app.use(express.urlencoded({ extended: true }));
 
 
-route.post('/signup',SignupDetails);
-route.post('/login',LoginDetails);
+app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 
-route.post('/saveDigi', upload.single('logo'), SaveDigiDetails);
-route.post('/addNewUser', upload.single('logo'), AddNewUser);
-route.get('/getDigi/:companyName/:id' , GetDigi);
-route.patch('/editDigiDetails/:companyName/:id' , upload.single('logo'), EditDigi);
-route.patch('/editUserDigi/:id' ,UpdateUserDigi );
+route.post("/signup", SignupDetails);
+route.post("/login", LoginDetails);
 
+route.get("/user/me", verifyJWTtoken,UsersCheckAuth);
 
-route.get('/showUser/:companyName/:userID',GetUsersDigi);
+route.post("/saveDigi", verifyJWTtoken, upload.single("logo"), SaveDigiDetails);
+route.post("/addNewUser", verifyJWTtoken, upload.single("logo"), AddNewUser);
+route.get("/getDigi/:companyName/:id", verifyJWTtoken, GetDigi);
+route.patch(
+  "/editDigiDetails/:companyName/:id",
+  verifyJWTtoken,
+  upload.single("logo"),
+  EditDigi
+);
+route.patch("/editUserDigi/:id", verifyJWTtoken, UpdateUserDigi);
 
-route.get('/editUser/:id',GetUserDetailsEdit)
+route.get("/showUser/:companyName/:userID", verifyJWTtoken, GetUsersDigi);
 
-route.get('/:companyname/getUserDigi',getUsersBasedonCompany);
+route.get("/editUser/:id", verifyJWTtoken, GetUserDetailsEdit);
 
-export default route
+route.get("/:companyname/getUserDigi", verifyJWTtoken, getUsersBasedonCompany);
+
+export default route;

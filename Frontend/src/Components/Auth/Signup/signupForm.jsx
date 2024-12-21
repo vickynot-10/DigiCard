@@ -1,56 +1,180 @@
-import './signupform.css';
-import { usePage } from '../../../Contexts/Pagehandling';
-import Page1 from './Page1/Page1';
-import Page2 from './Page2/page2';
-import Page3 from './Page3/page3';
-import Page4 from './Page4/page4';
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
+import "../Login/loginForm.css";
+import Toaster from "../../Reusable_components/Toaster/toaster";
+import Loader from "../../Reusable_components/Loader/loader";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 
-export default function SignUpForm(){
-    const {pageNum,setPageNum,pageindex}  = usePage()
-    const [userdetails,setUserdetails] = useState({
-        mail : '' , username : '' , password : ''
-    })
-    function savingDetails(e){
-        const {name,value} = e.target
-        setUserdetails((prev)=>({
-            ...prev ,
-            [name] : value
-        }))
-    }
+export default function SignUpForm() {
+  const [userdetails, setUserdetails] = useState({
+    mail: "",
+    username: "",
+    password: "",
+  });
+  const [isLoading, setLoading] = useState(false);
+  const [resData, setResData] = useState({
+    isCreated: false,
+    msg: "",
+  });
+  const [errobj, seterrobj] = useState({
+    isErr: false,
+    msg: "",
+  });
 
-    async function submittingForm(e){
-        e.preventDefault();
-        try{
-            let res = await axios.post(`${process.env.REACT_APP_URL}/signup`,userdetails);
-            console.log(res)
-        }catch(e){
-            console.log(e)
+  function savingDetails(e) {
+    const { name, value } = e.target;
+    setUserdetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+  function seterrFalse() {
+    seterrobj({
+      isErr: false,
+      msg: "",
+    });
+  }
+  function setresfalse() {
+    setResData({
+      isCreated: false,
+      msg: "",
+    });
+  }
+
+  async function submittingForm(e) {
+    e.preventDefault();
+    setLoading(true);
+    try {
+        if(userdetails.password.length <= 8){
+            throw new Error("Password should be 8 characters long");
         }
+      let res = await axios.post(
+        `${process.env.REACT_APP_URL}/signup`,
+        userdetails
+      );
+      if (!res) {
+        throw new Error("An error occured Try Again");
+      }
+      if (res.data.isCreated === true) {
+        setResData({
+          isCreated: true,
+          msg: res.data.msg,
+        });
+      }
+    } catch (e) {
+      let errmsg = e.message || "An Error occured";
+      if (e.response) {
+        errmsg = e.response.data;
+      }
+      seterrobj({
+        isErr: true,
+        msg: errmsg,
+      });
+      setresfalse();
     }
+    finally{
+        setLoading(false)
+    }
+  }
 
-    return (
-        <div id="signup-container">
-            <div id="signup-div">
-                <div id="signup-main">
-                    <div id='signup-form'> 
-                        <form onSubmit={submittingForm}  >
-                        <input type='text' required onChange={savingDetails} value={userdetails.username} name='username'  />
-                        <input type='password' required onChange={savingDetails} value={userdetails.password} name='password' />
-                        <input type='email' onChange={savingDetails} required value={userdetails.mail} name='mail' />
-                        <button type='submit'>Submit</button>
-                        </form>
-                        {/* { pageindex === 0 && <Page1 /> }
-                        { (pageindex === 1 && pageNum[1]!== false ) && <Page2 /> }
-                        { (pageindex === 2 && pageNum[2]!== false ) && <Page3 /> }
-                        { (pageindex === 3 && pageNum[3]!== false ) && <Page4 /> } */}
-
-                        
-                        
-                     </div>
+  return (
+    <div id="loginform-container">
+      <div id="loginform-div">
+        <div id="loginForm-main">
+          <form onSubmit={submittingForm}>
+            <div id="loginform">
+              <div id="login-header">
+                <p> Create Your Account </p>
+              </div>
+              <div id="login-input-div">
+                <label htmlFor="username-login"> User Name </label>
+                <div>
+                  <span>
+                    <PersonOutlinedIcon />
+                  </span>
+                  <input
+                  required
+                    placeholder="Type Here"
+                    type="text"
+                    onChange={savingDetails}
+                    id="username-login"
+                    name="username"
+                    value={userdetails.username}
+                  />
                 </div>
+              </div>
+              <div id="login-input-div">
+                <label htmlFor="mail-login">Mail </label>
+                <div>
+                  <span>
+                    <EmailOutlinedIcon />
+                  </span>
+                  <input
+                  required
+                    type="email"
+                    placeholder="Type Here"
+                    onChange={savingDetails}
+                    id="mail-login"
+                    name="mail"
+                    value={userdetails.mail}
+                  />
+                </div>
+              </div>
+              <div id="login-input-div">
+                <label htmlFor="password-login">Password </label>
+                <div>
+                  <span>
+                    <HttpsOutlinedIcon />
+                  </span>
+                  <input
+                  required
+                    type="password"
+                    placeholder="Type Here"
+                    onChange={savingDetails}
+                    id="password-login"
+                    name="password"
+                    value={userdetails.password}
+                  />
+                </div>
+              </div>
+              <div id="login-btn-submit">
+                <button disabled={isLoading} type="submit">
+                  {isLoading ? <Loader size={25} color="white" /> : "SIGN UP"}
+                </button>
+              </div>
+              {errobj.isErr && (
+                <Toaster
+                  message={errobj.msg}
+                  type="error"
+                  onClose={seterrFalse}
+                  AutoHideDuration={5000}
+                  MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+                  width="100%"
+                  fontColor="white"
+                  iconColor="white"
+                />
+              )}
+              {resData.isCreated && (
+                <Toaster
+                  message={resData.msg}
+                  type="success"
+                  onClose={setresfalse}
+                  AutoHideDuration={5000}
+                  MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+                  width="100%"
+                  fontColor="white"
+                  iconColor="white"
+                />
+              )}
+              <div id="signup-text-div">
+                <a href="/loginForm"> Already Have an account ? Login </a>
+              </div>
             </div>
+          </form>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

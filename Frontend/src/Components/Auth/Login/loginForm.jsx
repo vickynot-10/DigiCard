@@ -32,7 +32,9 @@ export default function LoginForm(){
         e.preventDefault();
         setLoading(true)
         try{
-            let res = await axios.post(`${process.env.REACT_APP_URL}/login`,details);
+            let res = await axios.post(`${process.env.REACT_APP_URL}/login`,details ,{
+                withCredentials : true
+            } );
             if(!res){
                 throw new Error("An Error Occured Please Try again");
             }
@@ -80,14 +82,14 @@ export default function LoginForm(){
                         <label htmlFor='username-login'> User Name / Mail </label>
                         <div>
                            <span> <PersonOutlinedIcon /> </span>
-                            <input placeholder='Type Here' type='text' onChange={savingDetails} id='username-login' name='mail' value={details.mail}  />
+                            <input placeholder='Type Here' type='text' required onChange={savingDetails} id='username-login' name='mail' value={details.mail}  />
                         </div>
                     </div>
                     <div id='login-input-div' >
                         <label htmlFor='password-login'>Password </label>
                         <div>
                            <span> <HttpsOutlinedIcon /> </span>
-                            <input type='password' placeholder='Type Here' onChange={savingDetails} id='password-login' name='password' value={details.password}  />
+                            <input type='password' required placeholder='Type Here' onChange={savingDetails} id='password-login' name='password' value={details.password}  />
                         </div>
                     </div>
                     <div id='forgot-pass-txt' >
@@ -115,7 +117,7 @@ export default function LoginForm(){
            />
                     }
                     <div id='signup-text-div' >
-                        <a href='#'> Don't Have an account ? Sign up </a>
+                        <a href='/signupForm'> Don't Have an account ? Sign up </a>
                     </div>
                 </div>
                 </form>

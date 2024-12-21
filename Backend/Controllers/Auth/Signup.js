@@ -3,9 +3,7 @@ import bcrypt from 'bcrypt';
 
 export const SignupDetails = async(req,res)=>{
     let data = req.body;
-    let finaldata;
-    console.log(data)
-    
+    let finaldata;    
     if(data.password.length <= 8){
         return res.status(400).send("Password must 8 characters")
     }

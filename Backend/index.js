@@ -5,10 +5,14 @@ import { configDotenv } from "dotenv";
 import cors from 'cors';
 import path , {dirname} from 'path'
 import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+
+
+
 
 const app = express();
 
-
+app.use(cookieParser())
 configDotenv()
 getDatabase()
 const port = 7000
