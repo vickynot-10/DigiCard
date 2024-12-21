@@ -3,11 +3,13 @@ import { useState } from 'react';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import Loader from '../../Reusable_components/Loader/loader';
 import Toaster from '../../Reusable_components/Toaster/toaster';
 
 export default function LoginForm(){
+    const navigate = useNavigate()
     const [isLoading , setLoading] = useState(false)
     const [details,setDetails] = useState({
         mail : '' , password : ''
@@ -43,6 +45,10 @@ export default function LoginForm(){
                     isFind : true , msg : res.data.msg
                 })
                 setErrfalse()
+                setTimeout(()=>{
+                    navigate('/')
+                    navigate(0);
+                },[4000])
             }
         }catch(e){
             let errmsg = e.message || "An Error occured";

@@ -78,6 +78,13 @@
   align-items: center;
   width: 40%;
 }
+#logout-btn{
+  background-color: transparent;
+  border: unset;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: clamp(14px, 20px, 25px);
+}
 #username-nav{
   font-weight: 500;
   font-size: clamp(14px, 20px, 25px);

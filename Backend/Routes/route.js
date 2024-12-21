@@ -18,6 +18,8 @@ import { LoginDetails } from "../Controllers/Auth/Login.js";
 import { verifyJWTtoken } from "../Middlewares/verifyJWT.js";
 import { UsersCheckAuth } from "../Controllers/Auth/Userauthcheck.js";
 
+import { Logout } from "../Controllers/Auth/Logout.js";
+
 import cookieParser from "cookie-parser";
 
 import path, { dirname } from "path";
@@ -36,6 +38,7 @@ app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 
 route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
+route.post("/logout", Logout);
 
 route.get("/user/me", verifyJWTtoken,UsersCheckAuth);
 
