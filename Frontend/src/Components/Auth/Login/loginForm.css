@@ -2,7 +2,7 @@
   width: 100%;
   overflow-y: hidden;
   height: 100dvh;
-  background-image: url('../../../Assests/backgrounds/bg-01.jpg');
+  background-image: url("../../../Assests/backgrounds/bg-01.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -76,7 +76,7 @@
   text-align: right;
 }
 #forgot-pass-txt a {
-    text-decoration: none;
+  text-decoration: none;
   text-align: right;
   color: #666666;
   font-size: 14px;
@@ -104,7 +104,7 @@
   overflow: hidden;
   border-radius: 25px;
   border: unset;
-  background-color: #a64bf4;;
+  background-color: #a64bf4;
   color: white;
   font-weight: 700;
 
@@ -134,21 +134,108 @@
 #login-btn-submit button:hover:before {
   left: 100%;
 }
-#signup-text-div{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+#signup-text-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 }
-#signup-text-div a{
-    text-decoration: none;
-    color: #666666;
+#signup-text-div a {
+  text-decoration: none;
+  color: #666666;
   font-size: 14px;
   line-height: 1.7;
   cursor: pointer;
   transition: 0.2s linear;
 }
-#signup-text-div a{
-    color: #1976d2;
+#signup-text-div a {
+  color: #1976d2;
+}
+@media only screen and (min-width: 320px) and (max-width: 369px) {
+  #loginForm-main {
+    width: 90%;
+  }
+  #loginform {
+    width: 280px;
+  }
+  #login-header p {
+    padding-bottom: unset;
+    font-size: 25px;
+  }
+  #login-input-div input {
+    height: 35px;
+  }
+  #login-btn-submit button {
+    padding: 10px 20px;
+    font-size: clamp(0.95rem, 1rem, 1.1rem);
+  }
+}
+
+@media only screen and (min-width: 370px) and (max-width: 419px) {
+  #loginForm-main {
+    width: 90%;
+  }
+  #loginform {
+    width: 300px;
+  }
+  #login-header p {
+    padding-bottom: unset;
+    font-weight: 600;
+    font-size: 25px;
+  }
+  #login-input-div input {
+    height: 35px;
+  }
+  #login-btn-submit button {
+    padding: 10px 20px;
+    font-size: clamp(0.95rem, 1rem, 1.1rem);
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 469px) {
+  #loginForm-main {
+    width: 90%;
+  }
+  #loginform {
+    width: 370px;
+  }
+  #login-header p {
+    padding-bottom: unset;
+    font-size: 25px;
+  }
+  #login-input-div input {
+    height: 35px;
+  }
+  #login-btn-submit button {
+    padding: 10px 20px;
+    font-size: clamp(0.95rem, 1rem, 1.1rem);
+  }
+}
+@media only screen and (min-width: 470px) and (max-width: 520px) {
+  #loginForm-main {
+    width: 90%;
+  }
+  #loginform {
+    width: 420px;
+  }
+  #login-header p {
+    padding-bottom: unset;
+    font-size: 25px;
+  }
+  #login-input-div input {
+    height: 35px;
+  }
+  #login-btn-submit button {
+    padding: 10px 20px;
+    font-size: clamp(0.95rem, 1rem, 1.1rem);
+  }
+}
+
+@media only screen and (min-width: 521px) and (max-width: 590px) {
+ 
+  #loginform {
+    width: 480px;
+  }
+ 
+
 }
