@@ -14,11 +14,11 @@ export default function PlanChose() {
       <div id="plan-chose-div">
         <div id="plan-chose-main">
           {isLoggedUserin.subscription === "free" &&
-            isLoggedUserin.cardsArrLength === 1 && <FreeUser />}
+            isLoggedUserin.cardsArrLength === 1 && <div> <p id="current-plan-txt" >Current plan</p> <FreeUser /> </div> }
           {isLoggedUserin.subscription === "basic" &&
-            isLoggedUserin.cardsArrLength <= 5 && <BasicSubscribed />}
+            isLoggedUserin.cardsArrLength <= 5 && <div> <p id="current-plan-txt" >Current plan</p> <BasicSubscribed /> </div>}
           {isLoggedUserin.subscription === "premium" &&
-            isLoggedUserin.cardsArrLength <= 10 && <PremiumSubscribed />}
+            isLoggedUserin.cardsArrLength <= 10 && <div> <p id="current-plan-txt" >Current plan</p> <PremiumSubscribed /> </div> }
           {isLoggedUserin.isLoggedIn === false && (
             <>
               <Freeplan />
