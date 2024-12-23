@@ -10,6 +10,11 @@ const UsersAuthSchema = new mongoose.Schema({
     password : {
         type : String
     },
+    subscription : {
+        type : String,
+        enum : ['free','basic','premium'],
+        default : 'free'
+    },
     Cards : [{
         type : mongoose.Schema.Types.ObjectId,
         ref : 'digimodel'

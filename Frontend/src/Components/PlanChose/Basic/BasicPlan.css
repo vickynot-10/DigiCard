@@ -16,12 +16,13 @@ bottom: -5%;
   left: 50%;
   transform: translate(-50%, -5%);
 }
-#button-card a {
+#button-card button {
   display: inline-block;
   padding: 10px 10px;
   border: 1px solid #00bfd8;
   border-radius: 2rem;
   text-transform: uppercase;
+  cursor: pointer;
   background-color: #00bfd8;
   color: #fff;
   font-weight: 700;
@@ -29,7 +30,7 @@ bottom: -5%;
   transition: 0.3s ease-in-out;
   text-decoration: none;
 }
-#button-card a:hover{
+#button-card button:hover{
     background-color: #fff;
     color: #00bfd8;
 }

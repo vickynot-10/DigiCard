@@ -1,16 +1,25 @@
 import { SelectBox,MenuItem } from "../../Reusable_components/SelectBox/selectbox";
 import { useState } from "react";
 
+import {useNavigate} from 'react-router-dom'
+
+
 export default function PremiumPlan() {
-  const premiumArr = [ "Logo" ,"Name and Address" ,"Contact", "Edit Pages","Social Media Links" ];
+  const navigate = useNavigate()
+  const premiumArr = [ "Logo" ,"Name and Address" ,"Contact", "Edit Pages","Social Media Links","Multiple Cards","Create 10 Cards Total" ];
   const [plan,setPlan] = useState('');
   function selectvalues(value) {
     setPlan(value);
   }
+  function redirect(){
+    navigate('/premium-plan',{
+      state : 'premium'
+    })
+  }
   return (
     <div id="bp-container">
       <div id="button-card">
-        <a href="/premium-plan">Create your own card</a>
+        <button onClick={redirect}>Create your own card</button>
       </div>
       <div id="bp-header-text">Premium</div>
       <hr className="hr-line" />

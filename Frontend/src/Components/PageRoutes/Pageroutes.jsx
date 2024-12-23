@@ -23,6 +23,8 @@ const DisplayUsersAllComp = lazy(()=>import("../DisplayAllUserdetails/displayUse
 const DisplayPageusersComp = lazy(()=>import("../DisplayUserDigi/Displayuser"));
 const EditUserCardComp = lazy(()=>import("../EditUserCard/editUserCard"));
 
+const FreePlanPageComp = lazy(()=>import("../FreePlanPage/freeplanPage"));
+
 export default function PageRoutes(){
     const location = useLocation();
     return (
@@ -36,6 +38,7 @@ export default function PageRoutes(){
         <Route path="/" element={<Home />} />
         <Route path="/create-card" element={<PlanChose />} />
         <Route path="/basic-plan" element={ <ProtectedRoute> <BasicplanPage /> </ProtectedRoute> } />
+        <Route path="/free-plan" element={ <ProtectedRoute> <FreePlanPageComp /> </ProtectedRoute> } />
         <Route path="/premium-plan" element={ <ProtectedRoute> <PremiumPlanPage /> </ProtectedRoute> } />
         <Route path="/getDigi/:companyName/:id" element={  <ProtectedRoute> <BasicPlanDisplayDetails />  </ProtectedRoute> } />
         <Route path="/editDigi/:companyName/:id" element={ <ProtectedRoute> <EditPageComponent /> </ProtectedRoute> } />

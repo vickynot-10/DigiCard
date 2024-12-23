@@ -1,18 +1,11 @@
-import "./BasicPlan.css";
 import { SelectBox,MenuItem } from "../../Reusable_components/SelectBox/selectbox"
-import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
 
-export default function Basicplan() {
+export default function Freeplan() {
   const navigate = useNavigate()
-  const [plan,setPlan] = useState('');
-  function selectvalues(value) {
-    setPlan(value);
-  }
-
   function redirect(){
-    navigate('/basic-plan',{
-      state : 'basic'
+    navigate('/free-plan',{
+      state : 'free'
     })
   }
 
@@ -34,36 +27,34 @@ export default function Basicplan() {
       text : "Edit Page"
     },
     {
-      avail: true,
-      text: "Multiple Cards",
-    }, 
-    {
       avail : true ,
-      text : "Create 5 Cards Total"
+      text : "Create 1 Card Total"
     },
     {
       avail: false,
       text: "Social Media Links",
     },
-   
+    {
+      avail : false,
+      text : "Multiple Cards"
+    }
   ];
   return (
     <div id="bp-container">
       <div id="button-card">
         <button onClick={redirect} >Create your own card</button>
       </div>
-      <div id="bp-header-text">Basic</div>
+      <div id="bp-header-text">Free</div>
       <hr className="hr-line" />
       <div id="select-box-div-bp">
         <p> Select Your Basic Plan </p>
-        <SelectBox placeHolder="Choose" onChange={selectvalues} selectBoxWidth="100%" >
-          <MenuItem value='₹99 - 1 Year'> ₹99 - 1 Year </MenuItem>
-          <MenuItem value='₹299 - 3 Year' > ₹299 - 3 Year </MenuItem>
-          <MenuItem value= '₹499 - 5 Year' > ₹499 - 5 Year </MenuItem>
+        <SelectBox placeHolder="Options" selectBoxWidth="100%" >
+          <MenuItem value='free'> Free Forever </MenuItem>
+          <MenuItem value='free'> Only one page can create  </MenuItem>
         </SelectBox>
       </div>
       <hr className="hr-line" />
-      <ul id="table-bp-details">
+      <ul id="table-bp-details"> 
         {bpArr.map((item, ind) => {
           return (
             <li

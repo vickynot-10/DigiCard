@@ -26,4 +26,9 @@
     gap: 40px;
 }
   }
-  
+  @media only screen and (min-width: 701px) and (max-width: 920px) {
+   
+    #plan-chose-main{
+     width: 100%;
+    }
+      }

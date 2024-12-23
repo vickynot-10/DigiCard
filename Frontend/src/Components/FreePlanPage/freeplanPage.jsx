@@ -6,7 +6,7 @@ import Toaster from '../Reusable_components/Toaster/toaster';
 import { useNavigate,useLocation } from "react-router-dom";
 import Switch from '@mui/material/Switch';
 
-export default function PremiumPlanPage() {
+export default function FreePlanPage() {
   const location = useLocation();
   const plan_type = location.state
   const [isChecked,setCheck] =useState(true)
@@ -100,10 +100,10 @@ export default function PremiumPlanPage() {
 
    useEffect(()=>{
       setTimeout(()=>{
-        if(plan_type === 'premium'){
+        if(plan_type === 'free'){
           setDetails((prev)=>({
             ...prev ,
-            plan : 'premium'
+            plan : 'free'
           }))
           return;
         }
@@ -130,6 +130,7 @@ export default function PremiumPlanPage() {
           withCredentials: true,
         }
       );
+      console.log(res)
       if (res.data.isDone === true) {
         setResData({
           isOK: true,
