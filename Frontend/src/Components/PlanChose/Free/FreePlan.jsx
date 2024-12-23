@@ -47,7 +47,7 @@ export default function Freeplan() {
       <div id="bp-header-text">Free</div>
       <hr className="hr-line" />
       <div id="select-box-div-bp">
-        <p> Select Your Basic Plan </p>
+        <p> Free Plan Provides </p>
         <SelectBox placeHolder="Options" selectBoxWidth="100%" >
           <MenuItem value='free'> Free Forever </MenuItem>
           <MenuItem value='free'> Only one page can create  </MenuItem>

@@ -1,0 +1,96 @@
+#already-subscribed-container{
+    box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 0 20px;
+    width: 400px;
+    overflow: hidden;
+    transition: 0.3s all linear;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: unset;
+    cursor: pointer;
+    align-items: center;
+    background-color: #fff;
+    z-index: 2;
+}
+.limit-reached-div{
+    cursor:not-allowed;
+}
+.limit-not-reached-div , .limit-reached-div{
+    position: relative;
+}
+#as-div1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.limit-reached-div::before{
+    background-image: linear-gradient(to bottom right, #f44336, #ff5722, #ff7043, #ff8a80);
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    transition: opacity 0.3s linear;
+    z-index: -1;
+}
+.limit-reached-div:hover::before{
+    opacity: 1;
+}
+.limit-not-reached-div::before{
+    background-image: linear-gradient(to bottom right, #00a3e0, #4fb9ff, #6ee7b7, #34d399);
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s linear;
+    z-index: -1;
+    
+}
+.limit-not-reached-div:hover::before{
+    opacity: 1;
+}
+#plan-header{
+    color: #050a30;
+    font-weight: 700;
+    font-size: clamp(1.55rem, 1.6rem, 1.65rem);
+    text-transform: capitalize;
+}
+#card-number-length{
+    font-weight: 400;
+    line-height: 1.5;
+    text-transform: capitalize;
+    text-align: left;
+    color: #212529;
+    font-size: clamp(0.95rem, 1rem, 1.05rem);
+}
+#as-div2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#as-div2 button{
+    cursor: pointer;
+    background-color: transparent;
+    border: unset;
+}
+@media only screen and (min-width: 320px) and (max-width: 439px) {
+    #already-subscribed-container {
+        width: 250px;
+    }
+}
+@media only screen and (min-width: 440px) and (max-width: 480px) {
+    #already-subscribed-container {
+        width: 300px;
+    }
+}

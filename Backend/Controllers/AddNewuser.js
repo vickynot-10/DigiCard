@@ -24,7 +24,6 @@ const AddNewUser = async (req, res) => {
     
     let cardLength = user.Cards.length;
     let clientSideCardname = user.subscription 
-    console.log(user)
     if(clientSideCardname === user.subscription){
       if (user.subscription === "free" && cardLength === 1) {
         return res.status(400).send("Free Plan can create 1 Card");

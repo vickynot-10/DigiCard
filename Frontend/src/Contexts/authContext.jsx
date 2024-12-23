@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({children})=>{
     const [isLoggedUserin,setUserLoggedIn] = useState({
-        username : '' , isLoggedIn : false , subscription : 'free'
+        username : '' , isLoggedIn : false , subscription : '' , cardsArrLength : 0
     })
     const [isLoading,setloading] =useState(true)
 
@@ -17,9 +17,11 @@ export const AuthContextProvider = ({children})=>{
                 if(!res){
                     throw new Error("Error occured");
                 }
+
                 if(res.data.isloggedin === true){
                     setUserLoggedIn({
-                        isLoggedIn : true , username : res.data.userdata.username , subscription : res.data.userdata.subscription
+                        isLoggedIn : true , username : res.data.userdata.username , subscription : res.data.userdata.subscription ,
+                        cardsArrLength : res.data.userdata.Cards.length
                     })
                 }
             }catch(e){
@@ -34,8 +36,6 @@ export const AuthContextProvider = ({children})=>{
         }
         fetchdata()
     },[]);
-    console.log(isLoggedUserin)
-
     return (
         <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn,isLoading }} >
             {children}

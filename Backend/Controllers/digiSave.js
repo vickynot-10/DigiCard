@@ -72,7 +72,6 @@ export const SaveDigiDetails = async (req, res) => {
     user.Cards.push(savedCard._id);
     user.subscription = clientSideCardname
     await user.save();
-    console.log('after user save',user)
     return res.status(200).json({
       isDone: true,
       msg: "Created Successfully",

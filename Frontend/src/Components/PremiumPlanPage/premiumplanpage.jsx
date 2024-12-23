@@ -97,7 +97,6 @@ export default function PremiumPlanPage() {
     navigate(`/getDigi/${details.companyname}/${resdata.Userid}`);
     
   }
-
    useEffect(()=>{
       setTimeout(()=>{
         if(plan_type === 'premium'){
@@ -139,7 +138,7 @@ export default function PremiumPlanPage() {
         setErrfalse();
       }
     } catch (e) {
-      console.log(e)
+
       let errMsg = e.message || "An error occured";
 
       if (e.response) {
