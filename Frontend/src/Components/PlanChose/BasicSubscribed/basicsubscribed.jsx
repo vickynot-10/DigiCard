@@ -16,6 +16,7 @@ export default function BasicSubscribed() {
     }
   }
   return (
+    <div id="already-subscribed-main-container" >
     <div id="already-subscribed-container" onClick={redirect}
     className={ isLoggedUserin.cardsArrLength < 5 ? 'limit-not-reached-div' : 'limit-reached-div' } >
       <div id="as-div1" >
@@ -27,6 +28,7 @@ export default function BasicSubscribed() {
       <div id="as-div2" > 
         {isLoggedUserin.cardsArrLength < 5 && <button> { isLoggedUserin.cardsArrLength < 5 ? <EastIcon /> : <CloseIcon /> }  </button> }
       </div>
+    </div>
     </div>
   );
 }

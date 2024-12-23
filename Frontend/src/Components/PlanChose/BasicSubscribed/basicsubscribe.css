@@ -1,3 +1,8 @@
+#already-subscribed-main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 #already-subscribed-container{
     box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
     padding: 20px;

@@ -18,6 +18,8 @@ import { LoginDetails } from "../Controllers/Auth/Login.js";
 import { verifyJWTtoken } from "../Middlewares/verifyJWT.js";
 import { UsersCheckAuth } from "../Controllers/Auth/Userauthcheck.js";
 
+import { GetCardDetails } from "../Controllers/GetCardDetailsOfUser.js";
+
 import { Logout } from "../Controllers/Auth/Logout.js";
 
 import cookieParser from "cookie-parser";
@@ -33,14 +35,15 @@ const __dirname = dirname(filename);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 
 route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
 route.post("/logout", Logout);
 
-route.get("/user/me", verifyJWTtoken,UsersCheckAuth);
+route.get("/user/me", verifyJWTtoken, UsersCheckAuth);
+
+route.get("/all-cards", verifyJWTtoken, GetCardDetails);
 
 route.post("/saveDigi", verifyJWTtoken, upload.single("logo"), SaveDigiDetails);
 route.post("/addNewUser", verifyJWTtoken, upload.single("logo"), AddNewUser);
