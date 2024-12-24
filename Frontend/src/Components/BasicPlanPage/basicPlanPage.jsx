@@ -5,11 +5,12 @@ import Loader from "../Reusable_components/Loader/loader";
 import Toaster from "../Reusable_components/Toaster/toaster";
 import { useNavigate, useLocation } from "react-router-dom";
 import Switch from "@mui/material/Switch";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 
 export default function BasicplanPage() {
   const location = useLocation();
   const [isChecked, setCheck] = useState(true);
-  const plan_type = location.state
+  const plan_type = location.state;
 
   const [details, setDetails] = useState({
     personName: "",
@@ -20,7 +21,7 @@ export default function BasicplanPage() {
     webLink: "",
     logo: null,
     companyname: "",
-    plan : "",
+    plan: "",
     role: "",
   });
   const [isLoading, setLoading] = useState(false);
@@ -49,21 +50,20 @@ export default function BasicplanPage() {
     }));
   }
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      if(plan_type === 'basic'){
-        setDetails((prev)=>({
-          ...prev ,
-          plan : 'basic'
-        }))
+  useEffect(() => {
+    setTimeout(() => {
+      if (plan_type === "basic") {
+        setDetails((prev) => ({
+          ...prev,
+          plan: "basic",
+        }));
         return;
       }
-      if(plan_type === null || plan_type === undefined){
-        navigate('/create-card');
+      if (plan_type === null || plan_type === undefined) {
+        navigate("/create-card");
       }
-    },5000)
-  
-  },[])
+    }, 5000);
+  }, []);
 
   function changingToggleValues(e) {
     if (e.target.checked) {
@@ -128,7 +128,6 @@ export default function BasicplanPage() {
         setErrfalse();
       }
     } catch (e) {
-
       let errMsg = e.message || "An error occured";
 
       if (e.response) {
@@ -163,51 +162,48 @@ export default function BasicplanPage() {
         <form onSubmit={SubmitForm} encType="multipart/form-data">
           <div id="basic-plan-page-main">
             <div>
-              <label htmlFor="companyname">
-                
-                {isChecked ? "Company Name :" : "Name :"}
-              </label>
               <input
                 type="text"
                 id="companyname"
+                className={details.companyname ? "filled" : ""}
                 required
                 onChange={savingDetails}
                 name="companyname"
                 value={details.companyname}
-                placeholder={isChecked ? "Enter Company Name" : "Enter Name"}
               />
+              <label htmlFor="companyname">
+                {isChecked ? "Company Name" : "Name"}
+              </label>
             </div>
 
             <div>
-              <label htmlFor="clientname">
-                
-                {isChecked ? "Name :" : "About in 1 line :"}
-              </label>
               <input
                 type="text"
+                className={details.personName ? "filled" : ""}
                 id="clientname"
                 required={isChecked}
                 onChange={savingDetails}
                 name="personName"
                 value={details.personName}
-                placeholder={isChecked ? "Enter Person Name" : "Enter About"}
               />
+              <label htmlFor="clientname">
+                {isChecked ? "Name" : "About in 1 line"}
+              </label>
             </div>
 
             <div>
-              <label htmlFor="role">Role : </label>
               <input
                 type="text"
                 id="role"
+                className={details.role ? "filled" : ""}
                 onChange={savingDetails}
                 name="role"
                 value={details.role}
-                placeholder="Enter Role"
               />
+              <label htmlFor="role">Role </label>
             </div>
 
             <div>
-              <label htmlFor="clientnumber"> Mobile Number : </label>
               <input
                 type="number"
                 required
@@ -215,74 +211,95 @@ export default function BasicplanPage() {
                 name="mobile"
                 onChange={savingDetails}
                 value={details.mobile}
-                placeholder="Enter Mobile Number"
+                className={details.mobile ? "filled" : ""}
               />
+              <label htmlFor="clientnumber"> Mobile Number </label>
             </div>
 
             <div>
-              <label htmlFor="clientwhatsapp"> Whatsapp : </label>
               <input
                 type="text"
                 id="clientwhatsapp"
                 name="whatsappnum"
                 onChange={savingDetails}
                 value={details.whatsappnum}
-                placeholder="Enter Whatsapp Number"
+                className={details.whatsappnum ? "filled" : ""}
               />
+              <label htmlFor="clientwhatsapp"> Whatsapp </label>
             </div>
 
             <div>
-              <label htmlFor="location"> Location : </label>
               <input
                 type="text"
                 id="location"
                 name="location"
                 value={details.location}
                 onChange={savingDetails}
-                placeholder="Enter Location"
+                className={details.location ? "filled" : ""}
               />
+              <label htmlFor="location"> Location </label>
             </div>
             <div>
-              <label htmlFor="mail"> Mail : </label>
               <input
                 type="email"
                 id="mail"
                 name="mail"
                 value={details.mail}
-                placeholder="Enter E-mail"
+                className={details.mail ? "filled" : ""}
                 onChange={savingDetails}
               />
+              <label htmlFor="mail"> Mail </label>
             </div>
 
             <div>
-              <label htmlFor="weblink"> Website Link : </label>
               <input
                 type="text"
                 id="weblink"
-                name="weblink"
-                value={details.weblink}
-                placeholder="Enter Web Page Link"
+                name="webLink"
+                value={details.webLink}
+                className={details.webLink ? "filled" : ""}
                 onChange={savingDetails}
               />
+              <label htmlFor="weblink"> Website Link</label>
             </div>
 
-            <div>
-              <label htmlFor="imgupload" style={{ marginBottom: "5px" }}>
-                
-                Logo
-              </label>
-              <p>
-                
+            <div className="file-upload-div">
+              <p id="file-upload-text-desc">
                 Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent
                 background
               </p>
-              <input
-                type="file"
-                id="imgupload"
-                name="logo"
-                accept=".svg, .png, .jpg, .jpeg, .webp"
-                onChange={setImg}
-              />
+              <div id="file-btn-div">
+                <input
+                  type="file"
+                  id="imgupload"
+                  name="logo"
+                  accept=".svg, .png, .jpg, .jpeg, .webp"
+                  onChange={setImg}
+                />
+                <FileUploadOutlinedIcon
+                  sx={{
+                    color: "#1F51FF",
+                    margin: "0 4px",
+                    fontSize: {
+                      xs: "15px",
+                      sm: "15px",
+                      md: "18px",
+                      lg: "20px",
+                      xl: "20px",
+                    },
+                  }}
+                />
+                <label
+                  htmlFor="imgupload"
+                  style={{
+                    position: "static",
+                    cursor: "pointer",
+                    fontSize: "clamp(0.80rem,0.90rem,1rem)",
+                  }}
+                >
+                  Upload Logo
+                </label>
+              </div>
             </div>
           </div>
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>

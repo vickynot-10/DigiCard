@@ -16,64 +16,107 @@
   align-items: center;
   justify-content: space-around;
 }
-#basic-plan-page-main div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  margin: 10px;
-}
-#basic-plan-page-main div label {
-  text-align: right;
-  margin: 30px 0px;
-  font-size: clamp(0.985rem, 1rem, 1.05rem);
-  font-weight: 500;
-}
-#basic-plan-page-main div input[type="text"],
-#basic-plan-page-main div input[type="email"],
-#basic-plan-page-main div input[type="number"] {
-  width: 90%;
-  height: 40px;
-  padding: 10px;
-  transition: 0.1s all linear;
-  border-radius: 8px;
-  border: 2px solid rgba(0, 0, 0, 0.42);
-  
-outline: none;
-}
 
-#basic-plan-page-main div input[type="text"]:hover,
-#basic-plan-page-main div input[type="email"]:hover,
-#basic-plan-page-main div input[type="number"]:hover {
-border-color: black;
-
-
+.file-upload-div input[type="file"] {
+  display: none;
 }
-#basic-plan-page-main div input[type="text"]:focus,
-#basic-plan-page-main div input[type="email"]:focus,
-#basic-plan-page-main div input[type="number"]:focus{
-border-color: #1976d2;
-outline: none;
+#file-upload-text-desc{
+  display: inline;
+  text-align: justify;
+  font-size: clamp(12px,15px,17px);
+  color: #737a75;
 }
-#submit-btn-bpp {
-  margin: 10px 0px;
+#file-btn-div {
   width: 140px;
-  height: 65px;
-  align-self: center;
-  cursor: pointer;
-  background-color: black;
-  color: #fff;
-  border: 1px solid currentColor;
+  padding: 10px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: 0.2s linear;
+  flex-direction: row;
+
+  border: 1px solid #ccc;
 }
-#submit-btn-bpp:hover {
+
+#basic-plan-page-main div {
+  position: relative;
+  margin: 25px;
+}
+
+#basic-plan-page-main div label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: #737a75;
+  cursor: text;
+  transition: all 0.2s ease-in-out;
+}
+
+#basic-plan-page-main div input:not([type="file"]) {
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  transition: all 0.2s linear;
+}
+#basic-plan-page-main div input:not([type="file"]):hover {
+  border-color: black;
+  outline: none;
+}
+#basic-plan-page-main div input:not([type="file"]):focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+#basic-plan-page-main div input:not([type="file"]):focus ~ label,
+#basic-plan-page-main div input.filled ~ label {
+  top: -12px;
+  color: #1976d2;
+  font-size: 12px;
+}
+
+#submit-btn-bpp {
+  align-self: center;
   background-color: #fff;
-  color: black;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  align-items: center;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+
+#submit-btn-bpp:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+#submit-btn-bpp:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
 #basic-plan-page-div form {
   display: flex;
   flex-direction: column;
@@ -87,7 +130,7 @@ outline: none;
   justify-content: space-around;
 }
 
-#switch-box-row div{
+#switch-box-row div {
   align-self: center;
   display: flex;
   align-items: center;
@@ -107,10 +150,11 @@ outline: none;
     flex-direction: column;
     justify-content: space-around;
   }
-  #switch-box-row div span ,#switch-box-row p {
-    font-size: clamp(12px,14px,16px);
+  #switch-box-row div span,
+  #switch-box-row p {
+    font-size: clamp(12px, 14px, 16px);
   }
-  #switch-box-row div{
+  #switch-box-row div {
     align-self: center;
     display: flex;
     align-items: center;

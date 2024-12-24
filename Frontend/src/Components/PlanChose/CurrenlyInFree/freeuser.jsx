@@ -8,19 +8,7 @@ import { AssestsObj } from "../../../Assests/assests.js";
 import Toaster from "../../Reusable_components/Toaster/toaster";
 export default function FreeUser() {
   const navigate = useNavigate();
-  useEffect(() => {
-    async function fetchdata() {
-      try {
-        let res = await axios.get(`${process.env.REACT_APP_URL}/all-cards`, {
-          withCredentials: true,
-        });
-        console.log(res);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    fetchdata();
-  }, []);
+
 
   const { isLoggedUserin } = useAuth();
   const [isLoading, setloading] = useState(true);

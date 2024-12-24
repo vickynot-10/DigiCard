@@ -28,15 +28,19 @@ export const SaveDigiDetails = async (req, res) => {
   }
 
   try {
-    let companyNamefind = await DigiModel.findOne(
-      {
-        Companyname: data1.companyname,
-      },
-      { _id: 1 }
-    );
-    if (companyNamefind) {
-      return res.status(400).send("Company with this name already exists");
+
+    if(data1.personal === 'false'){
+      let companyNamefind = await DigiModel.findOne(
+        {
+          Companyname: data1.companyname,
+        },
+        { _id: 1 }
+      );
+      if (companyNamefind) {
+        return res.status(400).send("Company with this name already exists");
+      }
     }
+    
     
     let cardLength = user.Cards.length;
     let clientSideCardname = data1.plan 
