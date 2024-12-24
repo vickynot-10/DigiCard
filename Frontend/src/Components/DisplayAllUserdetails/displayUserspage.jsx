@@ -38,7 +38,6 @@ export default function DisplayAllUsers() {
         if (!res) {
           throw new Error("Error Occured");
         }
-
         if (res.data.isFound === true) {
           setUsersData({
             isFind: true,
@@ -111,7 +110,7 @@ export default function DisplayAllUsers() {
       {usersData.isFind && (
         <div id="display-all-users-main">
           <div id="display-all-users-div">
-            {(usersData.img !== null || !usersData.img.startsWith("Didnt")) && (
+            {(usersData.img !== null && !usersData.img.startsWith("Didnt")) && (
               <img
                 src={`${process.env.REACT_APP_URL}/imgs${usersData.img}`}
                 alt="logo"
@@ -201,7 +200,7 @@ export default function DisplayAllUsers() {
                   </div>
                  
                   <div>
-                    <span>
+                    <span id="page-number" >
                       Page {currentIndex} of {totalPages}
                     </span>
                   </div>

@@ -87,35 +87,45 @@
 #tables-div table tbody tr:hover {
   background-color: #f4f6f8;
 }
-#pagination-div{
+#pagination-div {
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20px;
   justify-content: flex-end;
 }
-#page-sub-div select{
+#page-sub-div select {
   width: 50px;
   cursor: pointer;
   margin: 0 5px;
 }
-#page-sub-div{
+#page-sub-div {
   width: 40%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
-#page-btn-div{
+#page-btn-div {
   display: flex;
   flex-direction: row;
 }
-#page-btn-div button{
+#page-btn-div button {
   margin: 0 20px;
   cursor: pointer;
 }
+#selct-pages-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#selct-pages-div span {
+  font-size: clamp(0.75rem, 0.875rem, 1rem);
+}
 
 @media only screen and (min-width: 320px) and (max-width: 700px) {
+ 
   #display-all-users-div img {
     max-width: 200px;
   }
@@ -124,6 +134,12 @@
   }
   #tables-div {
     overflow-x: auto;
+  }
+  #page-btn-div svg{
+    height: 12px;
+    width: 12px;
+    padding: unset;
+    margin: unset;
   }
   #tables-div::-webkit-scrollbar {
     height: 4px;
@@ -147,5 +163,63 @@
   scrollbar thumb {
     background-color: #888;
     border-radius: 10px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 390px) {
+
+  #pagination-div {
+    width: 100%;
+  }
+  
+  #page-sub-div {
+    width: 100%;
+  }
+  #selct-pages-div span,#selct-pages-div select {
+    font-size: clamp(10px,12px,15px);
+  }
+  #page-number {
+    font-size:  clamp(10px,12px,15px);
+  }
+  #page-btn-div button {
+    margin: 0 3px;
+  }
+
+}
+
+@media only screen and (min-width: 391px) and (max-width: 570px) {
+
+  #pagination-div {
+    width: 100%;
+    justify-content: space-around;
+
+  }
+  
+   #page-sub-div {
+    width: 100%;
+  }
+  #page-btn-div button {
+    margin: 0 3px;
+  }
+}
+@media only screen and (min-width: 371px) and (max-width: 900px) {
+
+  #pagination-div {
+    width: 100%;
+    justify-content: space-around;
+
+  }
+  
+   #page-sub-div {
+    width: 100%;
+  }
+  #page-btn-div button {
+    margin: 0 12px;
+  }
+}
+@media only screen and (min-width: 901px) and (max-width: 1170px) {
+
+  
+   #page-sub-div {
+    width: 100%;
   }
 }

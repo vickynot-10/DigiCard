@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 #already-subscribed-container{
     box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
@@ -89,6 +90,74 @@
     background-color: transparent;
     border: unset;
 }
+#userscard-shows-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+#current-digicard-header-txt{
+    color: #050a30;
+    font-weight: 700;
+    font-size: clamp(1.55rem, 1.6rem, 1.65rem);
+    text-transform: capitalize;
+}
+#cards-boxes-div{
+    margin: 10px 0;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: grid;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+#sep-card-detail-show{
+    width: 80%;
+    box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px auto;
+    overflow: hidden;
+    transition: 0.3s all linear;
+    border: unset;
+    cursor: pointer;
+    background-color: #fff;
+    z-index: 2;
+}
+
+#sep-card-detail-show:hover{
+    transform: scale(1.1);
+    box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.50);
+}
+
+#company-name-at-card p{
+    word-break: break-word;
+    text-align: center;
+    color: #050a30;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.15rem, 1.20rem);
+    text-transform: capitalize;
+}
+#company-name-at-card{
+    width: 80%;
+    margin: 10px auto;
+    word-break: break-word;
+    padding: 8px;
+    text-align: center;
+}
+#sep-card-detail-show img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+
 @media only screen and (min-width: 320px) and (max-width: 439px) {
     #already-subscribed-container {
         width: 250px;
