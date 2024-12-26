@@ -1,6 +1,11 @@
 #navbar-container {
   width: 100%;
-  box-shadow: 0px 0px 30px 20px #fcf5e5;
+  box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
+  position: sticky;
+  top: 0%;
+  left: 0%;
+  background-color: white;
+  z-index: 999;
 }
 
 #navbar-div {
