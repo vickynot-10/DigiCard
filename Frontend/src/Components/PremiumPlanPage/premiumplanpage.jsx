@@ -196,7 +196,7 @@ export default function PremiumPlanPage() {
 
                 <div>
                   <label htmlFor="clientname">
-                    {isChecked ? " Name" : "About"}
+                    {isChecked ? "Founder / CEO" : "About"}
                   </label>
                   <input
                     type="text"

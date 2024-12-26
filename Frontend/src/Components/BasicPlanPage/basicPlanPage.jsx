@@ -191,7 +191,7 @@ export default function BasicplanPage() {
 
                 <div>
                   <label htmlFor="clientname">
-                    {isChecked ? "Name" : "About in 1 line"}
+                    {isChecked ? "Founder / CEO" : "About"}
                   </label>
                   <input
                     type="text"
