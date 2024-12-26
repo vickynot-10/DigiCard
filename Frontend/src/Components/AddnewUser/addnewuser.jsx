@@ -350,7 +350,7 @@ export default function AddNewUser() {
           </div>
 
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>
-            {isLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+            {isLoading ? <Loader size={20} color="black" /> : "Submit"}
           </button>
         </form>
       </div>

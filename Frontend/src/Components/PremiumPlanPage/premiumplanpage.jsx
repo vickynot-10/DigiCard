@@ -7,7 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Switch from "@mui/material/Switch";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 
-
 export default function PremiumPlanPage() {
   const location = useLocation();
   const plan_type = location.state;
@@ -75,12 +74,11 @@ export default function PremiumPlanPage() {
   }
   function setImg(e) {
     const fileImg = e.target.files[0];
-    
+
     setDetails((prev) => ({
       ...prev,
       logo: fileImg,
     }));
-
   }
 
   function setErrfalse() {
@@ -176,7 +174,10 @@ export default function PremiumPlanPage() {
         <form onSubmit={SubmitForm} encType="multipart/form-data">
           <div id="basic-plan-page-main">
             <div id="section-div">
-              <p className="section-header" > {isChecked ? "Company Details" : "Personal Details"} </p>
+              <p className="section-header">
+                
+                {isChecked ? "Company Details" : "Personal Details"}
+              </p>
 
               <div id="input-boxes-arrange-div">
                 <div>
@@ -185,14 +186,12 @@ export default function PremiumPlanPage() {
                   </label>
                   <input
                     type="text"
-                    className={details.companyname ? "filled" : ""}
                     id="companyname"
                     onChange={savingDetails}
                     name="companyname"
                     required
                     value={details.companyname}
                   />
-         
                 </div>
 
                 <div>
@@ -200,7 +199,6 @@ export default function PremiumPlanPage() {
                     {isChecked ? " Name" : "About"}
                   </label>
                   <input
-                    className={details.personName ? "filled" : ""}
                     type="text"
                     id="clientname"
                     required={isChecked}
@@ -214,7 +212,6 @@ export default function PremiumPlanPage() {
                   <label htmlFor="role">Role </label>
                   <input
                     type="text"
-                    className={details.role ? "filled" : ""}
                     id="role"
                     onChange={savingDetails}
                     name="role"
@@ -227,7 +224,6 @@ export default function PremiumPlanPage() {
                 <label htmlFor="location"> Location </label>
                 <input
                   type="text"
-                  className={details.location ? "filled" : ""}
                   id="location"
                   name="location"
                   value={details.location}
@@ -241,7 +237,6 @@ export default function PremiumPlanPage() {
                   <input
                     type="text"
                     id="weblink"
-                    className={details.webLink ? "filled" : ""}
                     name="webLink"
                     value={details.webLink}
                     onChange={savingDetails}
@@ -249,20 +244,23 @@ export default function PremiumPlanPage() {
                 </div>
                 <div className="file-upload-div">
                   <p id="file-upload-text-desc">
-                    {
-                      ( details.logo && details.logo.name && details.logo.name.trim() !== '') ? `${details.logo.name} selected` :   " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"
-                    }
-                
+                    {details.logo &&
+                    details.logo.name &&
+                    details.logo.name.trim() !== ""
+                      ? `${details.logo.name} selected`
+                      : " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"}
                   </p>
-                  <div style={{
-                    width: '120px',
-                    padding: '10px',
-                    display: 'flex',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    border: '1px solid #ccc'
-                  }} >
+                  <div
+                    style={{
+                      width: "120px",
+                      padding: "10px",
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      flexDirection: "row",
+                      border: "1px solid #ccc",
+                    }}
+                  >
                     <input
                       type="file"
                       id="imgupload"
@@ -299,14 +297,13 @@ export default function PremiumPlanPage() {
             </div>
 
             <div id="section-div">
-              <p  className="section-header" >Contact Details</p>
+              <p className="section-header">Contact Details</p>
               <div id="input-boxes-arrange-div">
                 <div>
                   <label htmlFor="mail"> Mail </label>
                   <input
                     type="email"
                     id="mail"
-                    className={details.mail ? "filled" : ""}
                     name="mail"
                     value={details.mail}
                     onChange={savingDetails}
@@ -318,7 +315,6 @@ export default function PremiumPlanPage() {
                   <input
                     required
                     type="text"
-                    className={details.mobile ? "filled" : ""}
                     id="clientnumber"
                     name="mobile"
                     onChange={savingDetails}
@@ -331,7 +327,6 @@ export default function PremiumPlanPage() {
                   <input
                     type="text"
                     id="clientwhatsapp"
-                    className={details.whatsappnum ? "filled" : ""}
                     name="whatsappnum"
                     onChange={savingDetails}
                     value={details.whatsappnum}
@@ -341,13 +336,12 @@ export default function PremiumPlanPage() {
             </div>
 
             <div id="section-div">
-              <p  className="section-header" >Social Links</p>
+              <p className="section-header">Social Links</p>
               <div id="input-boxes-arrange-div">
                 <div>
                   <label htmlFor="linkedin"> LinkedIn Link </label>
                   <input
                     type="text"
-                    className={details.linkedin ? "filled" : ""}
                     id="linkedin"
                     name="linkedin"
                     value={details.linkedin}
@@ -358,7 +352,6 @@ export default function PremiumPlanPage() {
                   <label htmlFor="facebook"> Facebook Link </label>
                   <input
                     type="text"
-                    className={details.facebook ? "filled" : ""}
                     id="facebook"
                     name="facebook"
                     value={details.facebook}
@@ -370,7 +363,6 @@ export default function PremiumPlanPage() {
                   <label htmlFor="twitter"> Twitter Link </label>
                   <input
                     type="text"
-                    className={details.twitter ? "filled" : ""}
                     id="twitter"
                     name="twitter"
                     value={details.twitter}
@@ -383,7 +375,6 @@ export default function PremiumPlanPage() {
                   <label htmlFor="youtube"> Youtube Link </label>
                   <input
                     type="text"
-                    className={details.youtube ? "filled" : ""}
                     id="youtube"
                     name="youtube"
                     value={details.youtube}
@@ -394,7 +385,6 @@ export default function PremiumPlanPage() {
                 <div>
                   <label htmlFor="instagram"> Instagram Link </label>
                   <input
-                    className={details.instagram ? "filled" : ""}
                     type="text"
                     id="instagram"
                     name="instagram"
@@ -407,7 +397,7 @@ export default function PremiumPlanPage() {
           </div>
 
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>
-            {isLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+            {isLoading ? <Loader size={20} color="black" /> : "Submit"}
           </button>
         </form>
       </div>

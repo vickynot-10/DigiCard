@@ -224,7 +224,7 @@ export default function EditPage() {
               </div>
             </div>
             <button type="submit" id="submit-btn-bpp" disabled={btnLoading}>
-              {btnLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+              {btnLoading ? <Loader size={20} color="black" /> : "Submit"}
             </button>
 
             <a

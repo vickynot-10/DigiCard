@@ -189,7 +189,7 @@ export default function FreePlanPage() {
                     name="companyname"
                     required
                     value={details.companyname}
-                    className={details.companyname ? "filled" : ""}
+                    
                   />
                 </div>
                 <div>
@@ -199,7 +199,7 @@ export default function FreePlanPage() {
                   <input
                     type="text"
                     id="clientname"
-                    className={details.personName ? "filled" : ""}
+                    
                     required={isChecked}
                     onChange={savingDetails}
                     name="personName"
@@ -209,7 +209,7 @@ export default function FreePlanPage() {
                 <div>
                   <label htmlFor="role">Role </label>
                   <input
-                    className={details.role ? "filled" : ""}
+                    
                     type="text"
                     id="role"
                     onChange={savingDetails}
@@ -223,7 +223,7 @@ export default function FreePlanPage() {
                   <label htmlFor="location"> Location </label>
                   <input
                     type="text"
-                    className={details.location ? "filled" : ""}
+                    
                     id="location"
                     name="location"
                     value={details.location}
@@ -237,7 +237,7 @@ export default function FreePlanPage() {
                   <label htmlFor="weblink"> Website Link</label>
                   <input
                     type="text"
-                    className={details.webLink ? "filled" : ""}
+                    
                     id="weblink"
                     name="webLink"
                     value={details.webLink}
@@ -302,7 +302,7 @@ export default function FreePlanPage() {
                   <label htmlFor="mail"> Mail </label>
                   <input
                     type="email"
-                    className={details.mail ? "filled" : ""}
+                    
                     id="mail"
                     name="mail"
                     value={details.mail}
@@ -314,7 +314,7 @@ export default function FreePlanPage() {
                   <input
                     required
                     type="text"
-                    className={details.mobile ? "filled" : ""}
+                    
                     id="clientnumber"
                     name="mobile"
                     onChange={savingDetails}
@@ -326,7 +326,7 @@ export default function FreePlanPage() {
                   <label htmlFor="clientwhatsapp"> Whatsapp </label>
                   <input
                     type="text"
-                    className={details.whatsappnum ? "filled" : ""}
+                    
                     id="clientwhatsapp"
                     name="whatsappnum"
                     onChange={savingDetails}
@@ -338,7 +338,7 @@ export default function FreePlanPage() {
           </div>
 
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>
-            {isLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+            {isLoading ? <Loader size={20} color="black" /> : "Submit"}
           </button>
         </form>
       </div>

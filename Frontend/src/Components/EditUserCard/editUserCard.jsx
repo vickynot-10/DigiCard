@@ -75,7 +75,6 @@ export default function EditUserCard() {
           throw new Error("Error occured");
         }
         if (res.data.isFound === true) {
-          console.log(res.data);
 
           seteditdata({
             isFound: true,
@@ -405,7 +404,7 @@ export default function EditUserCard() {
               </div>
             </div>
             <button type="submit" id="submit-btn-bpp" disabled={btnLoading}>
-              {btnLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+              {btnLoading ? <Loader size={20} color="black" /> : "Submit"}
             </button>
             <button
               onClick={redirectToweb}

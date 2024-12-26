@@ -23,7 +23,7 @@ export default function BasicplanPage() {
     companyname: "",
     plan: "",
     role: "",
-    personal : false
+    personal: false,
   });
   const [isLoading, setLoading] = useState(false);
   const [resdata, setResData] = useState({
@@ -41,10 +41,7 @@ export default function BasicplanPage() {
     }
   }, [resdata.Userid]);
 
-
-
   const navigate = useNavigate();
- 
 
   function savingDetails(e) {
     const { name, value } = e.target;
@@ -72,15 +69,17 @@ export default function BasicplanPage() {
   function changingToggleValues(e) {
     if (e.target.checked) {
       setCheck(true);
-      setDetails((prev)=>({
-        ...prev , personal : false
-      }))
+      setDetails((prev) => ({
+        ...prev,
+        personal: false,
+      }));
       return;
     }
     setCheck(false);
-    setDetails((prev)=>({
-      ...prev , personal : true
-    }))
+    setDetails((prev) => ({
+      ...prev,
+      personal: true,
+    }));
   }
 
   function setImg(e) {
@@ -111,7 +110,7 @@ export default function BasicplanPage() {
     }
     navigate(`/getDigi/${details.companyname}/${resdata.Userid}`);
   }
- 
+
   async function SubmitForm(e) {
     e.preventDefault();
     setLoading(true);
@@ -183,7 +182,6 @@ export default function BasicplanPage() {
                   <input
                     type="text"
                     id="companyname"
-                    className={details.companyname ? "filled" : ""}
                     required
                     onChange={savingDetails}
                     name="companyname"
@@ -197,7 +195,6 @@ export default function BasicplanPage() {
                   </label>
                   <input
                     type="text"
-                    className={details.personName ? "filled" : ""}
                     id="clientname"
                     required={isChecked}
                     onChange={savingDetails}
@@ -211,7 +208,6 @@ export default function BasicplanPage() {
                   <input
                     type="text"
                     id="role"
-                    className={details.role ? "filled" : ""}
                     onChange={savingDetails}
                     name="role"
                     value={details.role}
@@ -219,16 +215,14 @@ export default function BasicplanPage() {
                 </div>
               </div>
               <div id="single-row-input-div">
-                
-                  <label htmlFor="location"> Location </label>
-                  <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={details.location}
-                    onChange={savingDetails}
-                    className={details.location ? "filled" : ""}
-                  />
+                <label htmlFor="location"> Location </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  value={details.location}
+                  onChange={savingDetails}
+                />
               </div>
               <div id="input-2boxes-arrange-div">
                 <div>
@@ -238,26 +232,29 @@ export default function BasicplanPage() {
                     id="weblink"
                     name="webLink"
                     value={details.webLink}
-                    className={details.webLink ? "filled" : ""}
                     onChange={savingDetails}
                   />
                 </div>
 
                 <div className="file-upload-div">
                   <p id="file-upload-text-desc">
-                  {
-                      ( details.logo && details.logo.name && details.logo.name.trim() !== '') ? `${details.logo.name} selected` :   " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"
-                    }
+                    {details.logo &&
+                    details.logo.name &&
+                    details.logo.name.trim() !== ""
+                      ? `${details.logo.name} selected`
+                      : " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"}
                   </p>
-                  <div style={{
-                    width: '120px',
-                    padding: '10px',
-                    display: 'flex',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    border: '1px solid #ccc'
-                  }}>
+                  <div
+                    style={{
+                      width: "120px",
+                      padding: "10px",
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      flexDirection: "row",
+                      border: "1px solid #ccc",
+                    }}
+                  >
                     <input
                       type="file"
                       id="imgupload"
@@ -303,7 +300,6 @@ export default function BasicplanPage() {
                     id="mail"
                     name="mail"
                     value={details.mail}
-                    className={details.mail ? "filled" : ""}
                     onChange={savingDetails}
                   />
                 </div>
@@ -316,7 +312,6 @@ export default function BasicplanPage() {
                     name="mobile"
                     onChange={savingDetails}
                     value={details.mobile}
-                    className={details.mobile ? "filled" : ""}
                   />
                 </div>
 
@@ -328,7 +323,6 @@ export default function BasicplanPage() {
                     name="whatsappnum"
                     onChange={savingDetails}
                     value={details.whatsappnum}
-                    className={details.whatsappnum ? "filled" : ""}
                   />
                 </div>
               </div>
@@ -336,7 +330,7 @@ export default function BasicplanPage() {
           </div>
 
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>
-            {isLoading ? <Loader size={20} color="#fff" /> : "Submit"}
+            {isLoading ? <Loader size={20} color="black" /> : "Submit"}
           </button>
         </form>
       </div>
