@@ -3,15 +3,17 @@ import { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../Reusable_components/Loader/loader";
 import Toaster from "../Reusable_components/Toaster/toaster";
-import { useParams,useLocation,useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/authContext";
 
 export default function EditUserCard() {
+  const { isLoggedUserin } = useAuth();
   const { id } = useParams();
   const location = useLocation();
-  const navigate = useNavigate()
-  const imgaddress = location.state
+  const navigate = useNavigate();
+  const imgaddress = location.state;
   const [btnLoading, setBtnLoading] = useState(false);
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState({logo : null});
   const [compname, setcompname] = useState("");
   const [editData, seteditdata] = useState({
     data: [],
@@ -66,18 +68,20 @@ export default function EditUserCard() {
     async function fetchData() {
       try {
         let res = await axios.get(
-          `${process.env.REACT_APP_URL}/editUser/${id}` , {withCredentials : true}
+          `${process.env.REACT_APP_URL}/editUser/${id}`,
+          { withCredentials: true }
         );
-        if(!res){
-          throw new Error("Error occured")
+        if (!res) {
+          throw new Error("Error occured");
         }
         if (res.data.isFound === true) {
- 
+          console.log(res.data);
+
           seteditdata({
             isFound: true,
             data: res.data.data,
           });
-            res.data.data.map((item) => setcompname(item.companyName))
+          res.data.data.map((item) => setcompname(item.companyName));
         }
       } catch (e) {
         let errMsg = e.message || "An error occured";
@@ -96,15 +100,15 @@ export default function EditUserCard() {
     fetchData();
   }, [id]);
 
-  function redirectToweb(){
+  function redirectToweb() {
     navigate(`/showUser/${compname}/${id}`, {
-      state : imgaddress === null ?  "Didnt upload" : imgaddress
-    })
+      state: imgaddress === null ? "Didnt upload" : imgaddress,
+    });
   }
   async function SubmitForm(e) {
     e.preventDefault();
     setBtnLoading(true);
-    if (Object.keys(details).length <= 0) {
+    if ( details.logo === null && Object.keys(details).length <= 1 ) {
       setErr({
         isErr: true,
         msg: "No Changes made in details",
@@ -112,10 +116,14 @@ export default function EditUserCard() {
       setBtnLoading(false);
       return;
     }
+    let formdata = new FormData();
+    for(let key in details){
+      formdata.append(key , details[key])
+    }
     try {
       let res = await axios.patch(
         `${process.env.REACT_APP_URL}/editUserDigi/${id}`,
-        details,
+        formdata,
         {
           withCredentials: true,
         }
@@ -141,6 +149,14 @@ export default function EditUserCard() {
     } finally {
       setBtnLoading(false);
     }
+  }
+
+  function setImg(e){
+    let fileImg = e.target.files[0];
+    setDetails((prev)=>({
+      ...prev , logo : fileImg
+    }))
+
   }
 
   return (
@@ -189,6 +205,20 @@ export default function EditUserCard() {
                               ? details["User_role"]
                               : item.User_role
                           }
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="User_ID">User ID</label>
+                        <input
+                          type="text"
+                          id="User_ID"
+                          onChange={savingDetails}
+                          value={
+                            details["User_ID"] !== undefined
+                              ? details["User_ID"]
+                              : item.User_ID
+                          }
+                          name="User_ID"
                         />
                       </div>
                       <div>
@@ -249,20 +279,7 @@ export default function EditUserCard() {
                           }
                         />
                       </div>
-                      <div>
-                        <label htmlFor="User_ID">User ID</label>
-                        <input
-                          type="text"
-                          id="User_ID"
-                          onChange={savingDetails}
-                          value={
-                            details["User_ID"] !== undefined
-                              ? details["User_ID"]
-                              : item.User_ID
-                          }
-                          name="User_ID"
-                        />
-                      </div>
+
                       <div>
                         <label htmlFor="location">Location</label>
                         <input
@@ -277,98 +294,125 @@ export default function EditUserCard() {
                           name="location"
                         />
                       </div>
-                      <div>
-                        <label htmlFor="whatsapp">WhatsApp</label>
-                        <input
-                          type="text"
-                          id="whatsapp"
-                          onChange={savingDetails}
-                          value={
-                            details["whatsapp"] !== undefined
-                              ? details["whatsapp"]
-                              : item.whatsapp
-                          }
-                          name="whatsapp"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="linkedin">LinkedIn</label>
-                        <input
-                          type="text"
-                          id="linkedin"
-                          onChange={savingDetails}
-                          value={
-                            details["linkedin"] !== undefined
-                              ? details["linkedin"]
-                              : item.linkedin
-                          }
-                          name="linkedin"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="facebook">Facebook</label>
-                        <input
-                          type="text"
-                          id="facebook"
-                          onChange={savingDetails}
-                          value={
-                            details["facebook"] !== undefined
-                              ? details["facebook"]
-                              : item.facebook
-                          }
-                          name="facebook"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="instagram">Instagram</label>
-                        <input
-                          type="text"
-                          onChange={savingDetails}
-                          id="instagram"
-                          value={
-                            details["instagram"] !== undefined
-                              ? details["instagram"]
-                              : item.instagram
-                          }
-                          name="instagram"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="twitter">Twitter</label>
-                        <input
-                          type="text"
-                          id="twitter"
-                          onChange={savingDetails}
-                          value={
-                            details["twitter"] !== undefined
-                              ? details["twitter"]
-                              : item.twitter
-                          }
-                          name="twitter"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="youtube">YouTube</label>
-                        <input
-                          type="text"
-                          id="youtube"
-                          onChange={savingDetails}
-                          value={
-                            details["youtube"] !== undefined
-                              ? details["youtube"]
-                              : item.youtube
-                          }
-                          name="youtube"
-                        />
-                      </div>
+                      {isLoggedUserin.subscription === "premium" && (
+                        <>
+                          <div>
+                            <label htmlFor="whatsapp">WhatsApp</label>
+                            <input
+                              type="text"
+                              id="whatsapp"
+                              onChange={savingDetails}
+                              value={
+                                details["whatsapp"] !== undefined
+                                  ? details["whatsapp"]
+                                  : item.whatsapp
+                              }
+                              name="whatsapp"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="linkedin">LinkedIn</label>
+                            <input
+                              type="text"
+                              id="linkedin"
+                              onChange={savingDetails}
+                              value={
+                                details["linkedin"] !== undefined
+                                  ? details["linkedin"]
+                                  : item.linkedin
+                              }
+                              name="linkedin"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="facebook">Facebook</label>
+                            <input
+                              type="text"
+                              id="facebook"
+                              onChange={savingDetails}
+                              value={
+                                details["facebook"] !== undefined
+                                  ? details["facebook"]
+                                  : item.facebook
+                              }
+                              name="facebook"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="instagram">Instagram</label>
+                            <input
+                              type="text"
+                              onChange={savingDetails}
+                              id="instagram"
+                              value={
+                                details["instagram"] !== undefined
+                                  ? details["instagram"]
+                                  : item.instagram
+                              }
+                              name="instagram"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="twitter">Twitter</label>
+                            <input
+                              type="text"
+                              id="twitter"
+                              onChange={savingDetails}
+                              value={
+                                details["twitter"] !== undefined
+                                  ? details["twitter"]
+                                  : item.twitter
+                              }
+                              name="twitter"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="youtube">YouTube</label>
+                            <input
+                              type="text"
+                              id="youtube"
+                              onChange={savingDetails}
+                              value={
+                                details["youtube"] !== undefined
+                                  ? details["youtube"]
+                                  : item.youtube
+                              }
+                              name="youtube"
+                            />
+                          </div>
+                          1
+                        </>
+                      )}
                     </Fragment>
                   );
                 })}
+
+              <div>
+                <label htmlFor="imgupload" style={{ marginBottom: "5px" }}>
+                  Upload New Logo
+                </label>
+                <p>
+                  Only accepts svg,png,jpg,jpeg,webp and Try upload an
+                  Transparent background
+                </p>
+                <input
+                  type="file"
+                  id="imgupload"
+                  name="logo"
+                  accept=".svg, .png, .jpg, .jpeg, .webp"
+                   onChange={setImg}
+                />
+              </div>
             </div>
             <button type="submit" id="submit-btn-bpp" disabled={btnLoading}>
               {btnLoading ? <Loader size={20} color="#fff" /> : "Submit"}
             </button>
-            <button onClick={redirectToweb} style={{backgroundColor:'transparent' , border : 'unset'}} >Click here to preview</button>
+            <button
+              onClick={redirectToweb}
+              style={{ backgroundColor: "transparent", border: "unset" }}
+            >
+              Click here to preview
+            </button>
           </form>
         </div>
       )}

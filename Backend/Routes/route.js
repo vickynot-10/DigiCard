@@ -54,7 +54,7 @@ route.patch(
   upload.single("logo"),
   EditDigi
 );
-route.patch("/editUserDigi/:id", verifyJWTtoken, UpdateUserDigi);
+route.patch("/editUserDigi/:id", verifyJWTtoken, upload.single('logo'), UpdateUserDigi);
 
 route.get("/showUser/:companyName/:userID", verifyJWTtoken, GetUsersDigi);
 

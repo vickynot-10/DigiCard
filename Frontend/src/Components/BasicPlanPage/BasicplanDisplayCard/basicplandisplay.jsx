@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { AssestsObj } from "../../../Assests/assests.js";
-
+import Loader from "../../Reusable_components/Loader/loader.jsx";
 
 import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -18,6 +18,7 @@ import html2canvas from "html2canvas";
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 export default function BasicPlanDisplayDetails() {
+  const [isLoading , setLoading] = useState(true);
   const divCapture = useRef(null);
   const [resData, setResData] = useState({
     data: {},
@@ -101,6 +102,9 @@ export default function BasicPlanDisplayDetails() {
         });
         setResFalse();
       }
+      finally{
+        setLoading(false)
+      }
     }
     fetchData();
   }, [id]);
@@ -111,6 +115,9 @@ export default function BasicPlanDisplayDetails() {
 
   return (
     <div id="bp-comp-container">
+      {
+        isLoading && <Loader size={100} loaderMargin='100px 0' />
+      }
       <div id="bp-cmp-div">
         <div id="bp-comp-main">
           {resData.isFound && (
@@ -392,6 +399,7 @@ export default function BasicPlanDisplayDetails() {
               rel="noopener noreferrer" > 
                     <button className="button-59" aria-label="edit"> Edit </button>
                   </a>
+                  <button className="button-59" aria-label="add-user"> Delete </button>
                   {
                     resData.data.personal === false &&   <><a href={`/addUser/${companyName}`}
                       target="_blank"

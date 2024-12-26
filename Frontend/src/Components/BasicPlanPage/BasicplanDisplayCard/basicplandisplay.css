@@ -454,8 +454,12 @@
   #bp-social-link-description {
     padding: 20px 10px;
   }
+  
   #pdf-download-btn-div {
     width: 90%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
   }
   #bp-section1-page {
     width: 100%;

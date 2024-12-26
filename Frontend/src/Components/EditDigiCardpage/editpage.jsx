@@ -167,7 +167,7 @@ export default function EditPage() {
       )}
       {editData.isFound && (
         <div id="edit-page-div">
-          {!editData.data.img.startsWith("Didnt") && (
+          { (editData.data && editData.data.img && !editData.data.img.startsWith("Didnt") && !editData.data.img !== null )  && (
             <img
               src={`${process.env.REACT_APP_URL}/imgs${editData.data.img}`}
               alt="company-picture"

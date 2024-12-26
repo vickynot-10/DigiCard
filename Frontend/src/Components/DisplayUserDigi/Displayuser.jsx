@@ -16,12 +16,14 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 
 import html2canvas from "html2canvas";
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Loader from '../Reusable_components/Loader/loader.jsx';
 
 
 
 export default function DisplayUserDigi() {
   const divCapture = useRef(null);
   const location = useLocation();
+  const [isLoading,setLoading] = useState(true)
   const navigate = useNavigate()
   const imgaddress = location.state
   const [resData, setResData] = useState({
@@ -89,6 +91,7 @@ export default function DisplayUserDigi() {
           throw new Error("Error occured")
         }
         if (res.data.isFound === true) {
+          
           setResData({
             isFound: true,
             data: res.data.data,
@@ -107,6 +110,9 @@ export default function DisplayUserDigi() {
         });
         setResFalse();
       }
+      finally{
+        setLoading(false)
+      }
     }
     fetchData();
   }, [id]);
@@ -124,18 +130,21 @@ export default function DisplayUserDigi() {
 
   return (
     <div id="bp-comp-container">
+      {
+        isLoading && <Loader size={100} loaderMargin='100px 0' />
+      }
       <div id="bp-cmp-div">
         <div id="bp-comp-main">
           {resData.isFound && (
             <div id="bp-comp-contents" ref={divCapture}>
               <div id="bp-section1-page">
-                {( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null) && (
+                { ( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null ) || (resData.data && resData.data.img && !resData.data.img.startsWith("Didnt") && resData.data.img !== null ) && (
                   
                   <div id="bp-logo-div">
                     <picture>
-                      <source type="image/webp" srcSet={`${process.env.REACT_APP_URL}/imgs${imgaddress}`} />
+                      <source type="image/webp" srcSet={ `${process.env.REACT_APP_URL}/imgs${imgaddress || resData.data.img}`  } />
                       <img
-                      src={`${process.env.REACT_APP_URL}/imgs${imgaddress}`}
+                      src={`${process.env.REACT_APP_URL}/imgs${imgaddress || resData.data.img}`}
                       alt="company-logo"
                     />
                     </picture>
