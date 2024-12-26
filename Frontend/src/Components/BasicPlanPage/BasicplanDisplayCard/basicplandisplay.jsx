@@ -383,6 +383,7 @@ export default function BasicPlanDisplayDetails() {
                 
                 </div>
 
+              
                 <div id="pdf-download-btn-div" data-html2canvas-ignore="true">
                 <button className="button-59" aria-label="download-file" onClick={generateImg}> Download </button>
                  
@@ -391,18 +392,18 @@ export default function BasicPlanDisplayDetails() {
               rel="noopener noreferrer" > 
                     <button className="button-59" aria-label="edit"> Edit </button>
                   </a>
-
-                  <a href={`/addUser/${companyName}`}
-              target="_blank"
-              rel="noopener noreferrer" > 
-                    <button className="button-59" aria-label="add-user"> Add a User </button>
-                  </a>
-
-                  <a href={`/showUser/${companyName}`}
-                  target="_blank" 
-                  rel="noopener noreferrer" > 
-                    <button className="button-59" aria-label="add-user"> Show All Users </button>
-                  </a>
+                  {
+                    resData.data.personal === false &&   <><a href={`/addUser/${companyName}`}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <button className="button-59" aria-label="add-user"> Add a User </button>
+                    </a><a href={`/showUser/${companyName}`}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                        <button className="button-59" aria-label="add-user"> Show All Users </button>
+                      </a></>
+                  }
+                
 
                 </div>
 

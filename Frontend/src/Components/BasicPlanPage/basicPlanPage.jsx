@@ -23,6 +23,7 @@ export default function BasicplanPage() {
     companyname: "",
     plan: "",
     role: "",
+    personal : false
   });
   const [isLoading, setLoading] = useState(false);
   const [resdata, setResData] = useState({
@@ -40,7 +41,10 @@ export default function BasicplanPage() {
     }
   }, [resdata.Userid]);
 
+
+
   const navigate = useNavigate();
+ 
 
   function savingDetails(e) {
     const { name, value } = e.target;
@@ -68,9 +72,15 @@ export default function BasicplanPage() {
   function changingToggleValues(e) {
     if (e.target.checked) {
       setCheck(true);
+      setDetails((prev)=>({
+        ...prev , personal : false
+      }))
       return;
     }
     setCheck(false);
+    setDetails((prev)=>({
+      ...prev , personal : true
+    }))
   }
 
   function setImg(e) {
@@ -101,7 +111,7 @@ export default function BasicplanPage() {
     }
     navigate(`/getDigi/${details.companyname}/${resdata.Userid}`);
   }
-
+ 
   async function SubmitForm(e) {
     e.preventDefault();
     setLoading(true);
@@ -235,8 +245,9 @@ export default function BasicplanPage() {
 
                 <div className="file-upload-div">
                   <p id="file-upload-text-desc">
-                    Only accepts svg,png,jpg,jpeg,webp and Try upload an
-                    Transparent background
+                  {
+                      ( details.logo && details.logo.name && details.logo.name.trim() !== '') ? `${details.logo.name} selected` :   " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"
+                    }
                   </p>
                   <div style={{
                     width: '120px',

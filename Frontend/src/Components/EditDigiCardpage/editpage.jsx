@@ -177,7 +177,8 @@ export default function EditPage() {
           <form onSubmit={SubmitForm} encType="multipart/form-data">
             <div id="edit-page-main">
               {Object.entries(editData.data).map(([key, val]) => {
-                if (key === "_id" || key === "__v" || key === 'members') {
+                if (key === "_id" || key === "__v" || key === 'members' || key==='personal') {
+                  
                   return null;
                 }
                 if (key !== "img") {

@@ -10,6 +10,9 @@ const UsersSchema = new mongoose.Schema({
     user_branch:{
         type : String
     },
+    img:{
+      type : String
+    },
     User_mobile_number : {
         type : String
     },

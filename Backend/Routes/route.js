@@ -46,7 +46,7 @@ route.get("/user/me", verifyJWTtoken, UsersCheckAuth);
 route.get("/all-cards", verifyJWTtoken, GetCardDetails);
 
 route.post("/saveDigi", verifyJWTtoken, upload.single("logo"), SaveDigiDetails);
-route.post("/addNewUser", verifyJWTtoken, upload.single("logo"), AddNewUser);
+route.post("/addNewUser", verifyJWTtoken, upload.single("img"), AddNewUser);
 route.get("/getDigi/:companyName/:id", verifyJWTtoken, GetDigi);
 route.patch(
   "/editDigiDetails/:companyName/:id",

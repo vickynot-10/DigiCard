@@ -11,7 +11,7 @@ export const GetCardDetails = async(req,res)=>{
             return res.status(400).send("Error occured , Try Logging in First")
         }
         const digiCard = await DigiModel.find({_id : {$in : userFind.Cards } } , {Companyname : 1 , _id : 1 , img : 1} );
-        const membersCard = await DigiModel.find( {members : {$in : userFind.Cards} } , {members : 1 , _id : 0  } ).populate('members' , '_id User_name companyName');
+        const membersCard = await DigiModel.find( {members : {$in : userFind.Cards} } , {members : 1 , _id : 0  } ).populate('members' , '_id User_name companyName img');
         return res.status(200).json({
             isFound : true , data : {
                 'digi' : digiCard.length > 0 ? digiCard : [],

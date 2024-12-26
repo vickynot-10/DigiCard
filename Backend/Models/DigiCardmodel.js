@@ -44,6 +44,10 @@ const DigiCardSchema = new mongoose.Schema({
   youtube : {
     type : String
   },
+  personal :{
+    type : Boolean,
+    default : false
+  },
   members : [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'

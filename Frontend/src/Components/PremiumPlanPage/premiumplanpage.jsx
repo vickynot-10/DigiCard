@@ -75,10 +75,12 @@ export default function PremiumPlanPage() {
   }
   function setImg(e) {
     const fileImg = e.target.files[0];
+    
     setDetails((prev) => ({
       ...prev,
       logo: fileImg,
     }));
+
   }
 
   function setErrfalse() {
@@ -247,8 +249,10 @@ export default function PremiumPlanPage() {
                 </div>
                 <div className="file-upload-div">
                   <p id="file-upload-text-desc">
-                    Only accepts svg,png,jpg,jpeg,webp and Try upload an
-                    Transparent background
+                    {
+                      ( details.logo && details.logo.name && details.logo.name.trim() !== '') ? `${details.logo.name} selected` :   " Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent background"
+                    }
+                
                   </p>
                   <div style={{
                     width: '120px',

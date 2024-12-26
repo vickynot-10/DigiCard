@@ -6,6 +6,7 @@ import path from "path";
 export const SaveDigiDetails = async (req, res) => {
   let data1 = req.body;
   let fileVar = req.file;
+
   let filePath;
   if (fileVar === null || !fileVar) {
     filePath = "Didnt upload an img";
@@ -68,6 +69,7 @@ export const SaveDigiDetails = async (req, res) => {
       img: filePath,
       instagram: data1.instagram,
       facebook: data1.facebook,
+      personal : data1.personal,
       twitter: data1.twitter,
       linkedin: data1.linkedin,
       youtube: data1.youtube,
@@ -84,4 +86,6 @@ export const SaveDigiDetails = async (req, res) => {
   } catch (e) {
     return res.status(400).send(e.message || "Internal Server Error");
   }
+
+
 };

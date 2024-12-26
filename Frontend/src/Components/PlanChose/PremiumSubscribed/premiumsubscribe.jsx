@@ -32,6 +32,7 @@ export default function PremiumSubscribed() {
           throw new Error("Error occured , Login and try again");
         }
         if (res.data.isFound === true) {
+          
           setErrobj({ isErr: false, msg: "" });
           setResData({
             isFound: true,

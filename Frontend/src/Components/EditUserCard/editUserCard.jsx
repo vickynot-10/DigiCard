@@ -72,6 +72,7 @@ export default function EditUserCard() {
           throw new Error("Error occured")
         }
         if (res.data.isFound === true) {
+ 
           seteditdata({
             isFound: true,
             data: res.data.data,

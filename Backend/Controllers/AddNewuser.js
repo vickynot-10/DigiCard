@@ -1,9 +1,19 @@
 import { UsersModel } from "../Models/usersmodel.js";
 import { DigiModel } from "../Models/DigiCardmodel.js";
 import { UsersAuthModel } from "../Models/UsersAuth.js";
-
+import path from "path";
 const AddNewUser = async (req, res) => {
   let data = req.body;
+  let fileVar = req.file
+  let filePath;
+  if (fileVar === null || !fileVar) {
+    filePath = "Didnt upload an img";
+  }
+  if (fileVar !== null && fileVar) {
+    let filenamevar = fileVar.filename;
+    let foldername = path.basename(fileVar.destination);
+    filePath = `/${foldername}/${filenamevar}`;
+  }
   if (!data) {
     return res.status(400).send(e.message || "Error occured Please Try again");
   }
@@ -21,6 +31,7 @@ const AddNewUser = async (req, res) => {
     });
   }
   try {
+    let FinalData = { ...data , img : filePath }
     
     let cardLength = user.Cards.length;
     let clientSideCardname = user.subscription 
@@ -35,7 +46,7 @@ const AddNewUser = async (req, res) => {
         return res.status(400).send("Premium plan can create 10 cards");
       }
     }
-    let dbData = new UsersModel(data);
+    let dbData = new UsersModel(FinalData  );
     await dbData.save();
     const companyDb = await DigiModel.findOne({
       Companyname: companyname,
