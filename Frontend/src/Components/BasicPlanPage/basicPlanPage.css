@@ -8,73 +8,128 @@
 }
 
 #basic-plan-page-main {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
   padding: 20px;
+  background-color: transparent;
+  width: 80%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
 
+#section-div {
+  margin: 10px auto;
+  width: 90%;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#input-boxes-arrange-div,
+#input-2boxes-arrange-div {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#input-boxes-arrange-div div,
+#single-row-input-div,
+#input-2boxes-arrange-div div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+#input-2boxes-arrange-div div {
+  width: 45%;
+}
+#single-row-input-div {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#input-boxes-arrange-div div input,
+#single-row-input-div input,
+#input-2boxes-arrange-div input {
+  margin: 10px 0;
+  padding: 15px 10px;
+
+  border: 2px solid rgba(0, 0, 0, 0.42);
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+  border-radius: 4px;
+}
+#input-boxes-arrange-div div {
+  width: 100%;
+}
+#input-2boxes-arrange-div input[type="text"] {
+  width: 100%;
+}
+#input-boxes-arrange-div div input {
+  width: 90%;
+}
+#input-boxes-arrange-div div:nth-of-type(3) input {
+  width: 100%;
+}
+#single-row-input-div input {
+  width: 100%;
+  box-sizing: border-box;
+}
+#single-row-input-div label {
+  text-align: left;
+  align-self: flex-start;
+}
+#input-boxes-arrange-div div label,
+#single-row-input-div label,
+#input-2boxes-arrange-div label {
+  font-size: 16px;
+  color: #737a75;
+}
+#section-div p {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.file-upload-div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
 .file-upload-div input[type="file"] {
   display: none;
 }
-#file-upload-text-desc{
+#file-upload-text-desc {
   display: inline;
-  text-align: justify;
-  font-size: clamp(12px,15px,17px);
+  font-size: clamp(12px, 15px, 17px);
   color: #737a75;
 }
-#file-btn-div {
-  width: 140px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
 
-  border: 1px solid #ccc;
-}
-
-#basic-plan-page-main div {
-  position: relative;
-  margin: 25px;
-}
-
-#basic-plan-page-main div label {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-size: 16px;
-  color: #737a75;
-  cursor: text;
-  transition: all 0.2s ease-in-out;
-}
-
-#basic-plan-page-main div input:not([type="file"]) {
-  border: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.42);
-  background: transparent;
-  width: 100%;
-  padding: 8px 0 5px 0;
-  font-size: 16px;
-  transition: all 0.2s linear;
-}
-#basic-plan-page-main div input:not([type="file"]):hover {
+#input-boxes-arrange-div div input:hover,
+#single-row-input-div input:hover,
+#input-2boxes-arrange-div input:hover {
   border-color: black;
-  outline: none;
-}
-#basic-plan-page-main div input:not([type="file"]):focus {
-  outline: none;
-  border-color: #1976d2;
 }
 
-#basic-plan-page-main div input:not([type="file"]):focus ~ label,
-#basic-plan-page-main div input.filled ~ label {
-  top: -12px;
-  color: #1976d2;
-  font-size: 12px;
+#input-boxes-arrange-div div input:focus,
+#single-row-input-div input:focus,
+#input-2boxes-arrange-div input:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+.section-header {
+  color: #050a30;
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 2.25rem;
+  text-align: center;
 }
 
 #submit-btn-bpp {
@@ -96,6 +151,7 @@
   line-height: 24px;
   width: 140px;
   outline: 0;
+  margin: 20px auto;
   padding: 0 17px;
   text-align: center;
   text-decoration: none;
@@ -128,6 +184,7 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-around;
+ 
 }
 
 #switch-box-row div {
@@ -137,10 +194,23 @@
   flex-direction: row;
   justify-content: space-around;
 }
-@media only screen and (min-width: 320px) and (max-width: 479px) {
+#switch-box-row p{
+color: #050a30;
+font-weight: 700;
+font-size: 1.15rem;
+line-height: 2.25rem;
+text-align: center;
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 599px) {
+  #section-div{
+    width: 100%;
+  }
   #basic-plan-page-main {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 90%;
     padding: unset;
+    margin:10px 0 0 0 ;
   }
   #switch-box-row {
     padding: unset;
@@ -160,5 +230,41 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  #input-boxes-arrange-div, #input-2boxes-arrange-div {
+    flex-direction: column;
+  }
+  #input-boxes-arrange-div div input {
+    width: 100%;
+}
+#input-2boxes-arrange-div div {
+  width: 100%;
+}
+
+#file-upload-text-desc {
+  font-size: clamp(10px,12px,14px);
+}
+}
+
+@media only screen and (min-width: 600px) and (max-width: 767px){
+  #basic-plan-page-main {
+    width: 90%;
+  }
+  #section-div{
+    width: 100%;
+  }
+  #file-upload-text-desc {
+    font-size: clamp(10px,12px,14px);
+  }
+  #input-boxes-arrange-div div label, #single-row-input-div label, #input-2boxes-arrange-div label {
+    font-size: 12px;
+   
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1021px) {
+  #basic-plan-page-main {
+    width: 100%;
   }
 }

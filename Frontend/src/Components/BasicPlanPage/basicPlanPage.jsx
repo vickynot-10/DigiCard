@@ -161,147 +161,169 @@ export default function BasicplanPage() {
 
         <form onSubmit={SubmitForm} encType="multipart/form-data">
           <div id="basic-plan-page-main">
-            <div>
-              <input
-                type="text"
-                id="companyname"
-                className={details.companyname ? "filled" : ""}
-                required
-                onChange={savingDetails}
-                name="companyname"
-                value={details.companyname}
-              />
-              <label htmlFor="companyname">
-                {isChecked ? "Company Name" : "Name"}
-              </label>
-            </div>
-
-            <div>
-              <input
-                type="text"
-                className={details.personName ? "filled" : ""}
-                id="clientname"
-                required={isChecked}
-                onChange={savingDetails}
-                name="personName"
-                value={details.personName}
-              />
-              <label htmlFor="clientname">
-                {isChecked ? "Name" : "About in 1 line"}
-              </label>
-            </div>
-
-            <div>
-              <input
-                type="text"
-                id="role"
-                className={details.role ? "filled" : ""}
-                onChange={savingDetails}
-                name="role"
-                value={details.role}
-              />
-              <label htmlFor="role">Role </label>
-            </div>
-
-            <div>
-              <input
-                type="number"
-                required
-                id="clientnumber"
-                name="mobile"
-                onChange={savingDetails}
-                value={details.mobile}
-                className={details.mobile ? "filled" : ""}
-              />
-              <label htmlFor="clientnumber"> Mobile Number </label>
-            </div>
-
-            <div>
-              <input
-                type="text"
-                id="clientwhatsapp"
-                name="whatsappnum"
-                onChange={savingDetails}
-                value={details.whatsappnum}
-                className={details.whatsappnum ? "filled" : ""}
-              />
-              <label htmlFor="clientwhatsapp"> Whatsapp </label>
-            </div>
-
-            <div>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                value={details.location}
-                onChange={savingDetails}
-                className={details.location ? "filled" : ""}
-              />
-              <label htmlFor="location"> Location </label>
-            </div>
-            <div>
-              <input
-                type="email"
-                id="mail"
-                name="mail"
-                value={details.mail}
-                className={details.mail ? "filled" : ""}
-                onChange={savingDetails}
-              />
-              <label htmlFor="mail"> Mail </label>
-            </div>
-
-            <div>
-              <input
-                type="text"
-                id="weblink"
-                name="webLink"
-                value={details.webLink}
-                className={details.webLink ? "filled" : ""}
-                onChange={savingDetails}
-              />
-              <label htmlFor="weblink"> Website Link</label>
-            </div>
-
-            <div className="file-upload-div">
-              <p id="file-upload-text-desc">
-                Only accepts svg,png,jpg,jpeg,webp and Try upload an Transparent
-                background
+            <div id="section-div">
+              <p className="section-header">
+                {isChecked ? "Company Details" : "Personal Details"}
               </p>
-              <div id="file-btn-div">
-                <input
-                  type="file"
-                  id="imgupload"
-                  name="logo"
-                  accept=".svg, .png, .jpg, .jpeg, .webp"
-                  onChange={setImg}
-                />
-                <FileUploadOutlinedIcon
-                  sx={{
-                    color: "#1F51FF",
-                    margin: "0 4px",
-                    fontSize: {
-                      xs: "15px",
-                      sm: "15px",
-                      md: "18px",
-                      lg: "20px",
-                      xl: "20px",
-                    },
-                  }}
-                />
-                <label
-                  htmlFor="imgupload"
-                  style={{
-                    position: "static",
-                    cursor: "pointer",
-                    fontSize: "clamp(0.80rem,0.90rem,1rem)",
-                  }}
-                >
-                  Upload Logo
-                </label>
+              <div id="input-boxes-arrange-div">
+                <div>
+                  <label htmlFor="companyname">
+                    {isChecked ? "Company Name" : "Name"}
+                  </label>
+                  <input
+                    type="text"
+                    id="companyname"
+                    className={details.companyname ? "filled" : ""}
+                    required
+                    onChange={savingDetails}
+                    name="companyname"
+                    value={details.companyname}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="clientname">
+                    {isChecked ? "Name" : "About in 1 line"}
+                  </label>
+                  <input
+                    type="text"
+                    className={details.personName ? "filled" : ""}
+                    id="clientname"
+                    required={isChecked}
+                    onChange={savingDetails}
+                    name="personName"
+                    value={details.personName}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="role">Role </label>
+                  <input
+                    type="text"
+                    id="role"
+                    className={details.role ? "filled" : ""}
+                    onChange={savingDetails}
+                    name="role"
+                    value={details.role}
+                  />
+                </div>
+              </div>
+              <div id="single-row-input-div">
+                
+                  <label htmlFor="location"> Location </label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={details.location}
+                    onChange={savingDetails}
+                    className={details.location ? "filled" : ""}
+                  />
+              </div>
+              <div id="input-2boxes-arrange-div">
+                <div>
+                  <label htmlFor="weblink"> Website Link</label>
+                  <input
+                    type="text"
+                    id="weblink"
+                    name="webLink"
+                    value={details.webLink}
+                    className={details.webLink ? "filled" : ""}
+                    onChange={savingDetails}
+                  />
+                </div>
+
+                <div className="file-upload-div">
+                  <p id="file-upload-text-desc">
+                    Only accepts svg,png,jpg,jpeg,webp and Try upload an
+                    Transparent background
+                  </p>
+                  <div style={{
+                    width: '120px',
+                    padding: '10px',
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    border: '1px solid #ccc'
+                  }}>
+                    <input
+                      type="file"
+                      id="imgupload"
+                      name="logo"
+                      accept=".svg, .png, .jpg, .jpeg, .webp"
+                      onChange={setImg}
+                    />
+                    <FileUploadOutlinedIcon
+                      sx={{
+                        color: "#1F51FF",
+                        margin: "0 4px",
+                        fontSize: {
+                          xs: "15px",
+                          sm: "15px",
+                          md: "18px",
+                          lg: "20px",
+                          xl: "20px",
+                        },
+                      }}
+                    />
+                    <label
+                      htmlFor="imgupload"
+                      style={{
+                        position: "static",
+                        cursor: "pointer",
+                        fontSize: "clamp(0.80rem,0.90rem,1rem)",
+                      }}
+                    >
+                      Upload Logo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="section-div">
+              <p className="section-header">Contact Details</p>
+              <div id="input-boxes-arrange-div">
+                <div>
+                  <label htmlFor="mail"> Mail </label>
+                  <input
+                    type="email"
+                    id="mail"
+                    name="mail"
+                    value={details.mail}
+                    className={details.mail ? "filled" : ""}
+                    onChange={savingDetails}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="clientnumber"> Mobile Number </label>
+                  <input
+                    type="number"
+                    required
+                    id="clientnumber"
+                    name="mobile"
+                    onChange={savingDetails}
+                    value={details.mobile}
+                    className={details.mobile ? "filled" : ""}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="clientwhatsapp"> Whatsapp </label>
+                  <input
+                    type="text"
+                    id="clientwhatsapp"
+                    name="whatsappnum"
+                    onChange={savingDetails}
+                    value={details.whatsappnum}
+                    className={details.whatsappnum ? "filled" : ""}
+                  />
+                </div>
               </div>
             </div>
           </div>
+
           <button type="submit" id="submit-btn-bpp" disabled={isLoading}>
             {isLoading ? <Loader size={20} color="#fff" /> : "Submit"}
           </button>
