@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Loader from "../Reusable_components/Loader/loader";
 import axios from "axios";
 import SearchHeader from "../Reusable_components/SearchBox/searchbox";
-import { useNavigate,Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import Toaster from "../Reusable_components/Toaster/toaster";
 
 export default function DisplayAllUsers() {
   const { companyName } = useParams();
@@ -20,7 +20,19 @@ export default function DisplayAllUsers() {
     isErr: false,
     msg: "",
   });
-
+  function setErrfalse() {
+    setErrobj({
+      isErr: false,
+      msg: "",
+    });
+  }
+  function setresFalse() {
+    setUsersData({
+      isFind: false,
+      data: [],
+      img: null,
+    });
+  }
   useEffect(() => {
     async function fetchData() {
       if (companyName === null) {
@@ -31,14 +43,16 @@ export default function DisplayAllUsers() {
       }
       try {
         let res = await axios.get(
-          `${process.env.REACT_APP_URL}/${companyName}/getUserDigi`,{
-            withCredentials : true
+          `${process.env.REACT_APP_URL}/${companyName}/getUserDigi`,
+          {
+            withCredentials: true,
           }
         );
         if (!res) {
           throw new Error("Error Occured");
         }
         if (res.data.isFound === true) {
+          setErrfalse();
           setUsersData({
             isFind: true,
             data: res.data.data,
@@ -54,6 +68,7 @@ export default function DisplayAllUsers() {
           isErr: true,
           msg: errmsg,
         });
+        setresFalse();
       } finally {
         setLoading(false);
       }
@@ -61,56 +76,56 @@ export default function DisplayAllUsers() {
     fetchData();
   }, []);
 
-
-  const [filterdata,setFilterdata] = useState([]);
-  function SearchingValue(val){
+  const [filterdata, setFilterdata] = useState([]);
+  function SearchingValue(val) {
     const lowercaseValue = val.toLowerCase();
-    const matchData = usersData.data.filter((item)=>{
-        return item.User_name.toLowerCase().includes(lowercaseValue);
-    })
-    const nonMatchValues = usersData.data.filter((item)=>{
-        return !item.User_name.toLowerCase().includes(lowercaseValue);
-    })
-    setFilterdata([...matchData , ...nonMatchValues])
+    const matchData = usersData.data.filter((item) => {
+      return item.User_name.toLowerCase().includes(lowercaseValue);
+    });
+    const nonMatchValues = usersData.data.filter((item) => {
+      return !item.User_name.toLowerCase().includes(lowercaseValue);
+    });
+    setFilterdata([...matchData, ...nonMatchValues]);
   }
 
-  const [itemsperpage,setItemsPerpage] = useState(5);
-  const totalPages = Math.ceil(usersData.data.length / itemsperpage)
-   const [currentIndex,setCurrentIndex] = useState(1);
-   const currentarr = filterdata.length > 0 ? filterdata : usersData.data
+  const [itemsperpage, setItemsPerpage] = useState(5);
+  const totalPages = Math.ceil(usersData.data.length / itemsperpage);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const currentarr = filterdata.length > 0 ? filterdata : usersData.data;
 
-   const paginate = currentarr.slice(
-    (currentIndex - 1) * itemsperpage , currentIndex * itemsperpage
-   )
+  const paginate = currentarr.slice(
+    (currentIndex - 1) * itemsperpage,
+    currentIndex * itemsperpage
+  );
 
-  function settngItemsPerpage(e){
-    setItemsPerpage(e.target.value)
-   }
+  function settngItemsPerpage(e) {
+    setItemsPerpage(e.target.value);
+  }
 
-   function nextPage(){
-    if(currentIndex < totalPages){
-        setCurrentIndex(currentIndex + 1)
+  function nextPage() {
+    if (currentIndex < totalPages) {
+      setCurrentIndex(currentIndex + 1);
     }
-   }
-   function prevPage(){
-    if(currentIndex > 1){
-        setCurrentIndex(currentIndex - 1)
+  }
+  function prevPage() {
+    if (currentIndex > 1) {
+      setCurrentIndex(currentIndex - 1);
     }
-   }
+  }
 
-   function redirectToweb(id){
+  function redirectToweb(id) {
     navigate(`/showUser/${companyName}/${id}`, {
-      state : usersData.img === null ?  "Didnt upload" : usersData.img
-    })
-   }
+      state: usersData.img === null ? "Didnt upload" : usersData.img,
+    });
+  }
 
   return (
     <div id="display-all-users-container">
-      {isLoading && <Loader />}
+      {isLoading && <Loader size={100} />}
       {usersData.isFind && (
         <div id="display-all-users-main">
           <div id="display-all-users-div">
-            {(usersData.img !== null && !usersData.img.startsWith("Didnt")) && (
+            {usersData.img !== null && !usersData.img.startsWith("Didnt") && (
               <img
                 src={`${process.env.REACT_APP_URL}/imgs${usersData.img}`}
                 alt="logo"
@@ -119,7 +134,7 @@ export default function DisplayAllUsers() {
             <div id="main-users-display">
               <div id="serach-box-div-users-div">
                 <SearchHeader
-                onChange={SearchingValue}
+                  onChange={SearchingValue}
                   FilterIcon={false}
                   ReverseIcon={false}
                   deleteIcon={false}
@@ -144,38 +159,32 @@ export default function DisplayAllUsers() {
                         return (
                           <tr key={item._id}>
                             <td>
-                              
                               {item.User_name.trim() === ""
                                 ? "Not Fill"
                                 : item.User_name}
                             </td>
                             <td>
-                              
                               {item.user_branch.trim() === ""
                                 ? "Not Fill"
                                 : item.user_branch}
                             </td>
                             <td>
-                              
                               {item.User_role.trim() === ""
                                 ? "Not Fill"
                                 : item.User_role}
                             </td>
                             <td>
-                              
                               {item.User_mobile_number.trim() === ""
                                 ? "Not Fill"
                                 : item.User_mobile_number}
                             </td>
                             <td>
-                              
                               {item.User_mail.trim() === ""
                                 ? "Not Fill"
                                 : item.User_mail}
                             </td>
                             <td>
-                              
-                              <button onClick={()=>redirectToweb(item._id)} >
+                              <button onClick={() => redirectToweb(item._id)}>
                                 Click
                               </button>
                             </td>
@@ -190,24 +199,21 @@ export default function DisplayAllUsers() {
                 <div id="page-sub-div">
                   <div id="selct-pages-div">
                     <span>Rows Per Page</span>
-                    <select
-                      onChange={settngItemsPerpage}
-                     >
+                    <select onChange={settngItemsPerpage}>
                       <option value={5}>5</option>
                       <option value={10}>10</option>
                       <option value={25}>25</option>
                     </select>
                   </div>
-                 
+
                   <div>
-                    <span id="page-number" >
+                    <span id="page-number">
                       Page {currentIndex} of {totalPages}
                     </span>
                   </div>
 
                   <div id="page-btn-div">
-                    <button 
-                    onClick={prevPage} disabled={currentIndex === 1}>
+                    <button onClick={prevPage} disabled={currentIndex === 1}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -231,12 +237,24 @@ export default function DisplayAllUsers() {
                       </svg>
                     </button>
                   </div>
-                
                 </div>
               </div>
             </div>
           </div>
         </div>
+      )}
+
+      {isErrobj.isErr && (
+        <Toaster
+          message={isErrobj.msg}
+          type="error"
+          onClose={setErrfalse}
+          MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+   
+          minwidthToaster="100px"
+          fontColor="white"
+          iconColor="white"
+        />
       )}
     </div>
   );
