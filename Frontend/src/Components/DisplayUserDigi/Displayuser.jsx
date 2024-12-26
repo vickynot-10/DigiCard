@@ -138,7 +138,7 @@ export default function DisplayUserDigi() {
           {resData.isFound && (
             <div id="bp-comp-contents" ref={divCapture}>
               <div id="bp-section1-page">
-                { ( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null ) || (resData.data && resData.data.img && !resData.data.img.startsWith("Didnt") && resData.data.img !== null ) && (
+                { ( ( imgaddress && !imgaddress.startsWith("Didnt") && imgaddress !== undefined && imgaddress !== null ) || (resData.data && resData.data.img && !resData.data.img.startsWith("Didnt") && resData.data.img !== null ) )&& (
                   
                   <div id="bp-logo-div">
                     <picture>
