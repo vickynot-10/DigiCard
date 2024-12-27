@@ -65,6 +65,15 @@ export default function FreeUser() {
     }
     fetchdata();
   }, []);
+
+  let count =0
+  resData.membersArr.forEach((item)=>{
+    item.members.forEach((val)=>{
+      count = count +1
+    })
+  })
+
+
   return (
     <div id="already-subscribed-main-container">
       <div
@@ -78,7 +87,7 @@ export default function FreeUser() {
         <div id="as-div1">
           <p id="plan-header">free plan</p>
           <p id="card-number-length">
-            cards created {resData.digiCard.length + ((resData.membersArr[0]?.members.length === null || resData.membersArr[0]?.members.length === undefined) ? 0 : resData.membersArr[0]?.members.length )} of 1
+            cards created {resData.digiCard.length + count } of 1
           </p>
         </div>
       </div>
