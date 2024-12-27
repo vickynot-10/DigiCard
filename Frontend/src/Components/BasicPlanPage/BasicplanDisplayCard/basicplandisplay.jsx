@@ -179,7 +179,7 @@ export default function BasicPlanDisplayDetails() {
     try {
       let res = await axios.delete(`${process.env.REACT_APP_URL}/deleteCard` , {
         data : {
-          userID : id
+          userID : id , companyname : companyName
         },
         withCredentials : true
       } , );
