@@ -31,7 +31,8 @@ export default function PremiumSubscribed() {
         if (!res) {
           throw new Error("Error occured , Login and try again");
         }
- 
+        console.log(res.data.data.membersdigi[0]?.members.length )
+        console.log(res.data.data.digi.length + res.data.data.membersdigi[0]?.members.length)
         if (res.data.isFound === true) {
           setErrobj({ isErr: false, msg: "" });
           setResData({
@@ -91,7 +92,7 @@ export default function PremiumSubscribed() {
         <div id="as-div1">
           <p id="plan-header">premium plan</p>
           <p id="card-number-length">
-            cards created {resData.digiCard.length + resData.membersArr[0]?.members.length} of 10
+            cards created {resData.digiCard.length + ((resData.membersArr[0]?.members.length === null || resData.membersArr[0]?.members.length === undefined) ? 0 : resData.membersArr[0]?.members.length )} of 10
           </p>
         </div>
         <div id="as-div2">

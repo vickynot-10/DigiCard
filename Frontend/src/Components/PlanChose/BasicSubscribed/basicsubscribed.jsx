@@ -89,7 +89,7 @@ export default function BasicSubscribed() {
         <div id="as-div1">
           <p id="plan-header">basic plan</p>
           <p id="card-number-length">
-            cards created {resData.digiCard.length + resData.membersArr[0]?.members.length} of 5
+            cards created {resData.digiCard.length + ((resData.membersArr[0]?.members.length === null || resData.membersArr[0]?.members.length === undefined) ? 0 : resData.membersArr[0]?.members.length )} of 5
           </p>
         </div>
         <div id="as-div2">
