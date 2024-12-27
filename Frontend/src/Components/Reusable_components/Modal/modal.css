@@ -31,3 +31,17 @@
 #bg-iconbtn-modal:hover {
   background-color: #948686b4;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 365px){
+  #modal-box{
+    max-width: 260px;
+    height: auto !important;
+  }
+}
+
+@media only screen and (min-width: 365px) and (max-width: 445px){
+  #modal-box{
+    max-width: 285px;
+    height: auto !important;
+  }
+}

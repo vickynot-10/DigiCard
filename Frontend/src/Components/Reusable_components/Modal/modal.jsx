@@ -47,7 +47,7 @@ function Modal( {
             })
         }}></div>
         
-        <div  style={modalBoxStyle}>
+        <div id='modal-box'  style={modalBoxStyle}>
                 <div id='modal-header-div'
                 
                 style={{

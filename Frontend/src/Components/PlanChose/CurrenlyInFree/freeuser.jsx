@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../Reusable_components/Loader/loader";
 import { AssestsObj } from "../../../Assests/assests.js";
 import Toaster from "../../Reusable_components/Toaster/toaster";
+import Basicplan from "../Basic/BasicPlan.jsx";
+import PremiumPlan from "../Premium/PremiumPlan.jsx";
+
 export default function FreeUser() {
   const navigate = useNavigate();
 
@@ -150,6 +153,11 @@ export default function FreeUser() {
             </div>
           </div>
         )}
+        <div id="plan-chose-free">
+        <Basicplan />
+        <PremiumPlan />
+        </div>
+        
 
       {resData.isFound &&
         (resData.digiCard.length === 0 || resData.membersArr.length === 0) &&
