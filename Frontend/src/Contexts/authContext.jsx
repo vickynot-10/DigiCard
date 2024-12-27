@@ -17,7 +17,6 @@ export const AuthContextProvider = ({children})=>{
                 if(!res){
                     throw new Error("Error occured");
                 }
-
                 if(res.data.isloggedin === true){
                     setUserLoggedIn({
                         isLoggedIn : true , username : res.data.userdata.username , subscription : res.data.userdata.subscription ,
@@ -36,6 +35,7 @@ export const AuthContextProvider = ({children})=>{
         }
         fetchdata()
     },[]);
+    
     return (
         <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn,isLoading }} >
             {children}

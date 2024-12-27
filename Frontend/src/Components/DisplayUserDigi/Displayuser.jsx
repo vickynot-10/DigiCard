@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import { useParams , useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AssestsObj } from "../../Assests/assests.js"
-
+import Toaster from '../Reusable_components/Toaster/toaster.jsx';
+import Modal from '../Reusable_components/Modal/modal.jsx';
 
 import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -32,14 +33,65 @@ export default function DisplayUserDigi() {
   });
   const [whatsappnum, setWhatappnum] = useState("");
   const { id , companyName } = useParams();
-  const [errobj, seterrobj] = useState({
-    iserr: false,
-    msg: "",
-  });
+  
   const [errobjRes, setErrobjRes] = useState({
     isErr: false,
     msg: "",
   });
+  const [delRes, setDelRes] = useState({
+    isDeleted: false,
+    msg: "",
+  });
+  const [errobjDel, seterrobjDel] = useState({
+    isErr: false,
+    msg: "",
+  });
+  const [modalLoading, setModalLoad] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalBoxStyle = {
+    opacity: '1',
+    borderRadius: '12px',
+    position: 'fixed',
+    display: 'flex',
+    padding: '20px',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: '350px',
+    minHeight: '150px',
+    height: 'auto',
+    backgroundColor: 'white',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '100',
+  };
+
+
+  function modalON() {
+    setModalOpen(true);
+  }
+  function errDelFalse() {
+    seterrobjDel({
+      isErr: false,
+      msg: "",
+    });
+  }
+
+  function setresDelFalse() {
+    setDelRes({
+      isDeleted: false,
+      msg: "",
+    });
+  }
+
+  function modalOFF() {
+    setModalOpen(false);
+    errDelFalse();
+    setresDelFalse();
+  }
+
+
 
   function ErrorFalse() {
     setErrobjRes({
@@ -76,10 +128,9 @@ export default function DisplayUserDigi() {
   useEffect(() => {
 
     if (id === null || !id || id === "null") {
-      seterrobj({
-        iserr: true,
-        msg: "Error occured Please Try again",
-      });
+      setErrobjRes({
+        isErr : true , msg : "An Error occured Please Try again"
+      })
       return;
     }
     async function fetchData() {
@@ -128,11 +179,104 @@ export default function DisplayUserDigi() {
     })
   }
 
+  async function DeleteCard() {
+    setModalLoad(true);
+    if (id === null || !id || id === "null") {
+      seterrobjDel({
+        isErr: true,
+        msg: "Error occured Please Try again",
+      });
+      return;
+    }
+    try {
+      let res = await axios.delete(`${process.env.REACT_APP_URL}/deleteUserCard` , {
+        data : {
+          userID : id , companyname : companyName
+        },
+        withCredentials : true
+      } );
+      if(!res){
+        throw new Error("An Error occured Try Again");
+      }
+      console.log(res.data)
+      if(res.data.isDeleted === true){
+        setDelRes({
+          isDeleted : true , msg : res.data.msg
+        })
+      }
+      errDelFalse()
+     
+    } catch (e) {
+      console.error(e);
+      let errmsg = e.message || "An Error occured";
+      if (e.response) {
+        errmsg = e.response.data;
+      }
+      seterrobjDel({
+        isErr: true,
+        msg: errmsg,
+      });
+      setresDelFalse();
+    }
+    finally{
+      setModalLoad(false)
+    }
+  }
+
+
   return (
     <div id="bp-comp-container">
       {
         isLoading && <Loader size={100} loaderMargin='100px 0' />
       }
+
+
+
+      {
+        modalOpen && (
+          <Modal 
+          headerText="Are you sure that you want to delete ?"
+          onClose={modalOFF} modalBoxStyle={ modalBoxStyle} 
+        >
+          <div id="two-del-buttons">
+            <button disabled={modalLoading} onClick={DeleteCard}>
+              
+              {modalLoading ? <Loader size={10} color="#fff" /> : "Yes"}
+            </button>
+            <button onClick={modalOFF}>No</button>
+          </div>
+          {
+
+            delRes.isDeleted &&  <Toaster
+            message={delRes.msg}
+            type="success"
+            onClose={setresDelFalse}
+             AutoHideDuration={5000}
+            MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+            minwidthToaster="50px"
+            fontColor="white"
+            iconColor="white"
+          />
+          }
+          {
+            errobjDel.isErr && <Toaster
+            message={errobjDel.msg}
+            type="error"
+            onClose={errDelFalse}
+            AutoHideDuration={5000}
+            MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+            minwidthToaster="50px"
+            fontColor="white"
+            iconColor="white"
+          />
+          }
+        </Modal>
+        )
+      }
+
+
+
+
       <div id="bp-cmp-div">
         <div id="bp-comp-main">
           {resData.isFound && (
@@ -396,7 +540,7 @@ export default function DisplayUserDigi() {
 
                     <button className="button-59" onClick={redirectToweb} aria-label="edit"> Edit </button>
 
-                    <button className="button-59" aria-label="add-user"> Delete this User </button>
+                    <button className="button-59" aria-label="delete-user" onClick={modalON} > Delete this User </button>
                   
 
                 </div>
@@ -407,6 +551,19 @@ export default function DisplayUserDigi() {
           )}
         </div>
       </div>
+
+      {errobjRes.isErr && (
+        <Toaster
+          message={errobjRes.msg}
+          type="error"
+          onClose={ErrorFalse}
+          AutoHideDuration={5000}
+          MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
+          minwidthToaster="50px"
+          fontColor="white"
+          iconColor="white"
+        />
+      )}
     </div>
   );
 }

@@ -13,14 +13,10 @@ export const GetDigi = async(req,res) =>{
             })
         }
         if(!dbFind){
-            return res.status(400).json({
-                isErr : true , msg : "Cant find"
-            })
+            return res.status(400).send("Cant find the details you looking for , Please Try again")
         }
         
     }catch(e){
-        return res.status(400).json({
-            isErr : true , msg : e.message || "Internal Server Error"
-        })
+        return res.status(400).send(e.message || "Server Error")
     }
 }

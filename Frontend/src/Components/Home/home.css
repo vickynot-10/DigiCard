@@ -232,6 +232,7 @@
    
   }
   #how-it-works-contents div {
+    min-width: 240px;
     width: auto;
     max-width: 400px;
    

@@ -2,7 +2,9 @@ import { UsersAuthModel } from "../Models/UsersAuth.js";
 import { DigiModel } from "../Models/DigiCardmodel.js";
 export const GetCardDetails = async(req,res)=>{
     if(!req.user){
-        return res.status(400).send("Please Login")
+        return res.status(400).json({
+            isloggedin : false , msg : 'Please Login'
+        })
     }
     let userID = req.user._id
     try{

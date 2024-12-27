@@ -21,6 +21,8 @@ import { UsersCheckAuth } from "../Controllers/Auth/Userauthcheck.js";
 import { GetCardDetails } from "../Controllers/GetCardDetailsOfUser.js";
 
 import { Logout } from "../Controllers/Auth/Logout.js";
+import { DeleteUserCard } from "../Controllers/DeleteUserCard.js";
+import { DeleteCard } from "../Controllers/DeleteCard.js";
 
 import cookieParser from "cookie-parser";
 
@@ -44,6 +46,9 @@ route.post("/logout", Logout);
 route.get("/user/me", verifyJWTtoken, UsersCheckAuth);
 
 route.get("/all-cards", verifyJWTtoken, GetCardDetails);
+
+route.delete('/deleteCard',verifyJWTtoken,DeleteCard);
+route.delete('/deleteUserCard',verifyJWTtoken,DeleteUserCard);
 
 route.post("/saveDigi", verifyJWTtoken, upload.single("logo"), SaveDigiDetails);
 route.post("/addNewUser", verifyJWTtoken, upload.single("img"), AddNewUser);

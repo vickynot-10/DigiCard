@@ -12,7 +12,8 @@ function Modal( {
         alignItems: 'center',
         flexDirection: 'column',
         width: '350px',
-        height: '180px',
+        minHeight: 'auto',
+        height : '180px',
         backgroundColor: 'white',
         top: '50%',
         left: '50%',
@@ -20,7 +21,7 @@ function Modal( {
         zIndex: '100'
       },
       AutoHideDuration,
-    headerText,headerDivwidth = '80%', headerTextColor = 'black',
+    headerText,headerDivwidth = '95%', headerTextColor = 'black',
     modalContainerBgcolor = 'rgb(119, 111, 111)' ,modalContainerOpacity = '0.6' ,
     onClose, headerFontSize,
     modalZindex = '50' ,

@@ -11,9 +11,7 @@ export const getUsersBasedonCompany = async(req,res)=>{
         let dbFind = await DigiModel.findOne({ Companyname : companyNamevalue
         } , { members : 1 , img : 1 , _id : 0 } )
         if(!dbFind){
-            return res.status(400).json({
-                isErr : true , msg : "Cant find CompanyName"
-            })
+            return res.status(400).send("Cant find CompanyName")
         }
         let membersArr = dbFind.members
         if(membersArr.length <=0 ){
