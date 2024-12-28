@@ -10,6 +10,9 @@ const UsersAuthSchema = new mongoose.Schema({
     password : {
         type : String
     },
+    googleID:{
+        type : String
+    },
     subscription : {
         type : String,
         enum : ['free','basic','premium'],

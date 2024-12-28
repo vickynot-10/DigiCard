@@ -31,5 +31,5 @@ app.use('/imgs',express.static(path.join(__dirname + '/FileUploads') ));
 app.use(route);
 
 app.listen(port , ()=>{
-    console.log("runniing")
+    console.log("runniing on" , port)
 })

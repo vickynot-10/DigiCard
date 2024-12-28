@@ -1,4 +1,7 @@
 import express from "express";
+import passport from '../Middlewares/passport.js'
+import { OauthCreate } from "../Controllers/OauthCreateController.js";
+
 import { SaveDigiDetails } from "../Controllers/digiSave.js";
 import { GetDigi } from "../Controllers/GetDigiDetails.js";
 import { upload } from "../Config/multer.js";
@@ -42,6 +45,9 @@ app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
 route.post("/logout", Logout);
+
+route.get('/auth/google',passport.authenticate('google',{scope : ['profile','email']}) );
+route.get('/auth/google/callback' , passport.authenticate('google', { session : false}) ,OauthCreate )
 
 route.get("/user/me", verifyJWTtoken, UsersCheckAuth);
 
