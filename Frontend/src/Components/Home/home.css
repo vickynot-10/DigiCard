@@ -58,6 +58,7 @@
   font-weight: 500;
   letter-spacing: 1px;
   border-radius: 5px;
+  transition:  0.3s linear;
   position: relative;
   z-index: 5;
   overflow: hidden;
@@ -70,12 +71,14 @@
   content: " ";
   width: 100%;
   height: 100%;
-  background-color: #e6e7f3;
+  background-color: #ffffff33;
 }
 #home-banner-submain button:hover::before {
   animation: SlideDown 0.3s linear forwards;
 }
-
+#home-banner-submain button:hover{
+  color: white;
+}
 #about-section {
   width: 100%;
   display: flex;

@@ -4,12 +4,26 @@ import { GenerateJWTtoken } from "../../Utils/generateToken.js";
 
 export const SignupDetails = async(req,res)=>{
     let data = req.body;
-    let finaldata;    
-    if(data.password.length <= 8){
-        return res.status(400).send("Password must 8 characters")
-    }
+    let finaldata;
     if(!data){
         return res.status(400).send("An Error occured Try Again");
+    }
+    if(!data.password || data.password.trim() === '' ){
+        return res.status(400).send("Enter your password")
+    }
+    
+    if(!data.username || data.username.trim() === '' ){
+        return res.status(400).send("Enter your username")
+    }
+    
+    if(!data.mail || data.mail.trim() === ''){
+        return res.status(400).send("Enter your Mail")
+    }
+    if(data.password.length < 8){
+        return res.status(400).send("Password must have atleast 8 characters")
+    }
+    if(data.password.length > 20){
+        return res.status(400).send("Password should less than 20 characters");
     }
     try{
         let valFindbyName = await UsersAuthModel.findOne({username : data.username});

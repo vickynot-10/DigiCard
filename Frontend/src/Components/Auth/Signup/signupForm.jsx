@@ -10,8 +10,8 @@ import { useAuth } from "../../../Contexts/authContext";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
-  const navigate = useNavigate()
-  const {setUserLoggedIn} = useAuth()
+  const navigate = useNavigate();
+  const { setUserLoggedIn } = useAuth();
   const [userdetails, setUserdetails] = useState({
     mail: "",
     username: "",
@@ -51,34 +51,49 @@ export default function SignUpForm() {
     e.preventDefault();
     setLoading(true);
     try {
-        if(userdetails.password.length <= 8){
-            throw new Error("Password should be 8 characters long");
-        }
+      if (!userdetails.password || userdetails.password.trim() === "") {
+        throw new Error("Password is required");
+      }
+      if ( !userdetails.username || userdetails.username.trim() === "") {
+        throw new Error("Enter Your Username");
+      }
+      if ( !userdetails.mail || userdetails.mail.trim() === "") {
+        throw new Error("Enter Your Mail");
+      }
+      if (userdetails.password.length < 8) {
+        throw new Error("Password must have atleast 8 characters");
+      }
+      if (userdetails.password.length > 20) {
+        throw new Error("Password should less than 20 characters");
+      }
+
       let res = await axios.post(
         `${process.env.REACT_APP_URL}/signup`,
-        userdetails ,{
-          withCredentials : true
+        userdetails,
+        {
+          withCredentials: true,
         }
       );
       if (!res) {
         throw new Error("An error occured Try Again");
       }
       if (res.data.isCreated === true) {
-        seterrFalse()
+        seterrFalse();
         setResData({
           isCreated: true,
           msg: res.data.msg,
         });
         setUserLoggedIn({
-          isLoggedIn : true , username : userdetails.username
-        })
-        setTimeout(()=>{
-          navigate('/')
+          isLoggedIn: true,
+          username: userdetails.username,
+        });
+        setTimeout(() => {
+          navigate("/");
           navigate(0);
-      },[4000])
+        }, [2000]);
       }
     } catch (e) {
-      setresfalse()
+      setresfalse();
       let errmsg = e.message || "An Error occured";
       if (e.response) {
         errmsg = e.response.data;
@@ -88,9 +103,8 @@ export default function SignUpForm() {
         msg: errmsg,
       });
       setresfalse();
-    }
-    finally{
-        setLoading(false)
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -110,7 +124,7 @@ export default function SignUpForm() {
                     <PersonOutlinedIcon />
                   </span>
                   <input
-                  required
+                    required
                     placeholder="Type Here"
                     type="text"
                     onChange={savingDetails}
@@ -127,7 +141,7 @@ export default function SignUpForm() {
                     <EmailOutlinedIcon />
                   </span>
                   <input
-                  required
+                    required
                     type="email"
                     placeholder="Type Here"
                     onChange={savingDetails}
@@ -144,7 +158,7 @@ export default function SignUpForm() {
                     <HttpsOutlinedIcon />
                   </span>
                   <input
-                  required
+                    required
                     type="password"
                     placeholder="Type Here"
                     onChange={savingDetails}

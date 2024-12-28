@@ -34,6 +34,19 @@ export default function LoginForm(){
         e.preventDefault();
         setLoading(true)
         try{
+            if(details.mail.trim() === ''){
+                throw new Error("Please Enter Username or Mail");
+            }
+            if(details.password.trim() === ''){
+                throw new Error("Please Enter Password")
+            }
+            if(details.password.length < 8){
+                throw new Error("Password must have atleast 8 characters");
+            }
+            if(details.password.length > 20){
+                throw new Error("Password should have within 20 characters");
+            }
+
             let res = await axios.post(`${process.env.REACT_APP_URL}/login`,details ,{
                 withCredentials : true
             } );
@@ -48,11 +61,11 @@ export default function LoginForm(){
                 setTimeout(()=>{
                     navigate('/')
                     navigate(0);
-                },[4000])
+                },[2000])
             }
         }catch(e){
             let errmsg = e.message || "An Error occured";
-            if(e.response){
+            if(e.response && e.response.data){
                 errmsg = e.response.data
             }
             seterrobj({
@@ -108,7 +121,7 @@ export default function LoginForm(){
                         errobj.iserr && <Toaster  message={errobj.msg}
                         type="error"
                         onClose={setErrfalse} 
-                        AutoHideDuration={5000}
+                         AutoHideDuration={5000}
                         MessagefontSize="clamp(0.765rem,0.875rem,1rem)"
                         width="100%" fontColor='white' iconColor='white'
            />

@@ -6,11 +6,18 @@ export const LoginDetails = async(req,res)=>{
     if(!data){
         return res.status(400).send("An Error occured Try Again");
     }
-    if (!data.mail || !data.password) {
-        return res.status(400).send("Email and password are required");
-    }    
-    if(data.password.length <= 8){
-        return res.status(400).send("Password must 8 characters")
+    if ( !data.mail || data.mail.trim() === '' ) {
+        return res.status(400).send("Email field required");
+    }
+    if (!data.password || data.password.trim() === '') {
+        return res.status(400).send("Password Field required");
+    }
+    if(data.password.length < 8){
+        return res.status(400).send("Password must have atleast 8 characters")
+    }
+    
+    if(data.password.length > 20){
+        return res.status(400).send("Password should less than 20 characters")
     }
     try{
         let user = await UsersAuthModel.findOne({
