@@ -46,7 +46,7 @@ route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
 route.post("/logout", Logout);
 
-route.get('/auth/google',passport.authenticate('google',{scope : ['profile','email']}) );
+route.get('/auth/google',passport.authenticate('google',{scope : ['profile','email'] , prompt :'select_account' }  ) );
 route.get('/auth/google/callback' , passport.authenticate('google', { session : false}) ,OauthCreate )
 
 route.get("/user/me", verifyJWTtoken, UsersCheckAuth);

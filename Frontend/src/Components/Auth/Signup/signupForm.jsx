@@ -8,6 +8,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import { useAuth } from "../../../Contexts/authContext";
 import { useNavigate } from "react-router-dom";
+import { AssestsObj } from "../../../Assests/assests.js";
 
 export default function SignUpForm() {
   const navigate = useNavigate();
@@ -46,6 +47,10 @@ export default function SignUpForm() {
       msg: "",
     });
   }
+  function googleroute(e) {
+    e.preventDefault();
+    window.location.href = `${process.env.REACT_APP_URL}/auth/google`;
+  }
 
   async function submittingForm(e) {
     e.preventDefault();
@@ -54,10 +59,10 @@ export default function SignUpForm() {
       if (!userdetails.password || userdetails.password.trim() === "") {
         throw new Error("Password is required");
       }
-      if ( !userdetails.username || userdetails.username.trim() === "") {
+      if (!userdetails.username || userdetails.username.trim() === "") {
         throw new Error("Enter Your Username");
       }
-      if ( !userdetails.mail || userdetails.mail.trim() === "") {
+      if (!userdetails.mail || userdetails.mail.trim() === "") {
         throw new Error("Enter Your Mail");
       }
       if (userdetails.password.length < 8) {
@@ -118,24 +123,25 @@ export default function SignUpForm() {
                 <p> Create Your Account </p>
               </div>
               <div id="login-input-div">
-                <label htmlFor="username-login"> User Name </label>
+               
                 <div>
                   <span>
                     <PersonOutlinedIcon />
                   </span>
                   <input
                     required
-                    placeholder="Type Here"
+                   
                     type="text"
                     onChange={savingDetails}
                     id="username-login"
                     name="username"
                     value={userdetails.username}
                   />
+                   <label htmlFor="username-login"> User Name </label>
                 </div>
               </div>
               <div id="login-input-div">
-                <label htmlFor="mail-login">Mail </label>
+               
                 <div>
                   <span>
                     <EmailOutlinedIcon />
@@ -143,16 +149,17 @@ export default function SignUpForm() {
                   <input
                     required
                     type="email"
-                    placeholder="Type Here"
+                   
                     onChange={savingDetails}
                     id="mail-login"
                     name="mail"
                     value={userdetails.mail}
                   />
+                   <label htmlFor="mail-login">Mail </label>
                 </div>
               </div>
               <div id="login-input-div">
-                <label htmlFor="password-login">Password </label>
+                
                 <div>
                   <span>
                     <HttpsOutlinedIcon />
@@ -160,12 +167,13 @@ export default function SignUpForm() {
                   <input
                     required
                     type="password"
-                    placeholder="Type Here"
+               
                     onChange={savingDetails}
                     id="password-login"
                     name="password"
                     value={userdetails.password}
                   />
+                  <label htmlFor="password-login">Password </label>
                 </div>
               </div>
               <div id="login-btn-submit">
@@ -197,6 +205,13 @@ export default function SignUpForm() {
                   iconColor="white"
                 />
               )}
+              <div id="google-login">
+                <button onClick={googleroute}>
+                  
+                  <img src={AssestsObj.Googleicon} alt="google-icon" /> Sign Up
+                  with Google Account
+                </button>
+              </div>
               <div id="signup-text-div">
                 <a href="/loginForm"> Already Have an account ? Login </a>
               </div>

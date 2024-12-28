@@ -5,7 +5,7 @@ import Mail from "./Icons/gmail_5968534.png";
 import GroupTeam from "./Icons/group.png";
 import UserIcon from "./Icons/user.png";
 
-
+import google from './Icons/google.png'
 
 export const AssestsObj = {
   mapIcon: Maps,
@@ -13,6 +13,7 @@ export const AssestsObj = {
   whatsappIcon: Whatsapp,
   GroupIcon: GroupTeam,
   User: UserIcon,
+  Googleicon : google
 };
 
 

@@ -4,6 +4,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AssestsObj } from "../../../Assests/assests.js";
 
 import Loader from "../../Reusable_components/Loader/loader";
 import Toaster from "../../Reusable_components/Toaster/toaster";
@@ -99,7 +100,8 @@ export default function LoginForm() {
     });
   }
 
-  function googleroute() {
+  function googleroute(e) {
+    e.preventDefault()
     window.location.href=`${process.env.REACT_APP_URL}/auth/google` ;
   }
 
@@ -113,14 +115,12 @@ export default function LoginForm() {
                 <p> Welcome </p>
               </div>
               <div id="login-input-div">
-                <label htmlFor="username-login"> User Name / Mail </label>
+                
                 <div>
                   <span>
-                    
                     <PersonOutlinedIcon />
                   </span>
                   <input
-                    placeholder="Type Here"
                     type="text"
                     required
                     onChange={savingDetails}
@@ -128,10 +128,11 @@ export default function LoginForm() {
                     name="mail"
                     value={details.mail}
                   />
+                  <label htmlFor="username-login"> User Name / Mail </label>
                 </div>
               </div>
               <div id="login-input-div">
-                <label htmlFor="password-login">Password </label>
+                
                 <div>
                   <span>
                     
@@ -140,12 +141,13 @@ export default function LoginForm() {
                   <input
                     type="password"
                     required
-                    placeholder="Type Here"
+
                     onChange={savingDetails}
                     id="password-login"
                     name="password"
                     value={details.password}
                   />
+                  <label htmlFor="password-login">Password </label>
                 </div>
               </div>
               <div id="forgot-pass-txt">
@@ -186,7 +188,7 @@ export default function LoginForm() {
                 />
               )}
               <div id="google-login">
-                <button onClick={googleroute}>Login Google</button>
+                <button onClick={googleroute}> <img src={AssestsObj.Googleicon} alt="google-icon" /> Log in with Google Account </button>
               </div>
               <div id="signup-text-div">
                 <a href="/signupForm"> Don't Have an account ? Sign up </a>

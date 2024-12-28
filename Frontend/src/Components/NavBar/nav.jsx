@@ -33,9 +33,7 @@ export default function NavBar() {
         setlogoutobj({
           isLogout : true , msg : res.data.msg , msgOnErr : ''
         })
-        setTimeout(()=>{
-          navigate(0)
-        },5000)
+        navigate(0)
       }
     }catch(e){
       let errmsg = e.message || "An error occured";
