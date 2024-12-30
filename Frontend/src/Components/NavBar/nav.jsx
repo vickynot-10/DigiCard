@@ -84,7 +84,7 @@ function setlogoutfalse(){
             <Link to="/">Home</Link>
             {isLoggedUserin.isLoggedIn ? (
               <><p id="username-nav"> {isLoggedUserin.username ? isLoggedUserin.username : 'User'}
-              </p><button onClick={Logout} id="logout-btn" >  Log out</button></>
+              </p><button onClick={Logout} id="logout-btn" >Log out</button></>
             ) : (
               <>
                 <Link to="/loginForm">Log in</Link>

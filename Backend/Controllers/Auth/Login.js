@@ -38,9 +38,9 @@ export const LoginDetails = async(req,res)=>{
 
         let token =GenerateJWTtoken(user._id);
         res.cookie('token',token , {
-            httpOnly : false ,
-            sameSite : 'lax',
-            secure: false,
+            httpOnly : true ,
+            sameSite : 'None',
+            secure: true,
             maxAge: 2 * 60 * 60 * 1000,
 
         })

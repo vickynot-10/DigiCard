@@ -43,6 +43,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 
+
+route.get('/',(req,res)=>{
+  res.send("running in backend")
+})
+
 route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
 route.post("/logout", Logout);

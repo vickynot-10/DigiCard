@@ -1,11 +1,14 @@
 import './home.css';
 import { useNavigate} from 'react-router-dom';
 
+
 export default function Home(){
     const navigate = useNavigate()
     function redirectcreate(){
         navigate('/create-card');
     }
+
+
     return (
         <div id="home-container">
         <div id="home-div">
@@ -15,14 +18,14 @@ export default function Home(){
                         <p>Inspire Your Clients <br /> Digitally</p>
                     </div>
                     <div id='home-banner-submain'>
-                        <p>E-DigiCard is a Digital Business Card that is smart, elegant & affordable.</p>
+                        <p> E-DigiCard is the smart, stylish, and affordable solution to modern professional networking. </p>
                         <button onClick={redirectcreate} aria-label='create-card-button' >Create Your Card</button>
                     </div>
                 </div>
                 <div id='about-section' >
-                    <div id='about-header-text' > <p>A New Era <br /> Digital Business Card </p> </div>
+                    <div id='about-header-text' > <p>Step into the Future of Networking <br /> Digital Business Card </p> </div>
                         
-                        <div id='about-text'> <p>e-digicard.com brings you a new age digital visiting card, that is smart elegant and affordable. No now more worries of carrying paper visiting card. Share this digital business card with unlimited persons anywhere anytime on just a single click.</p>
+                        <div id='about-text'> <p>E-DigiCard brings you a next-generation digital business card—smart, sleek, and budget-friendly.Say goodbye to paper cards and share your professional identity instantly with just one click, anywhere, anytime.</p>
                         </div>
                         <div id='about-btns-home'>
                             <button aria-label='contact-button'> Contact - Us  </button>

@@ -110,13 +110,13 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: #957575;
+    background-color: rgba(31, 43, 123, 1);;
     position: absolute;
     top: -100%;
     left: 0;
     width: 100%;
     overflow: hidden;
-    min-height: 80px;
+    min-height: 200px;
     z-index: 100;
     animation: Slidedown 0.2s linear forwards;
   }
@@ -128,7 +128,7 @@
       top: 0%;
     }
   }
-  .navbar-btn a {
+  .navbar-btn a ,.navbar-btn p ,.navbar-btn button {
     color: white;
   }
 }

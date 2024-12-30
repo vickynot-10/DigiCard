@@ -8,8 +8,10 @@ export const AuthContextProvider = ({children})=>{
     })
     const [isLoading,setloading] =useState(true)
 
+
     useEffect(()=>{
-        async function fetchdata() {
+       
+               async function fetchdata() {
             try{
                 let res = await axios.get(`${process.env.REACT_APP_URL}/user/me`,{
                     withCredentials : true
@@ -38,7 +40,7 @@ export const AuthContextProvider = ({children})=>{
     },[]);
 
     return (
-        <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn,isLoading }} >
+        <AuthContext.Provider value={{isLoggedUserin,setUserLoggedIn,isLoading  }} >
             {children}
         </AuthContext.Provider>
     )
