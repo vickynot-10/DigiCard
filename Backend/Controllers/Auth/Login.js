@@ -32,6 +32,10 @@ export const LoginDetails = async(req,res)=>{
         if(!passwordMatch){
             return res.status(400).send("Incorrect Password");
         }
+        if(user.isVerified === false){
+            return res.status(400).send("Please Verify your account");
+        }
+
         let token =GenerateJWTtoken(user._id);
         res.cookie('token',token , {
             httpOnly : false ,
@@ -43,6 +47,8 @@ export const LoginDetails = async(req,res)=>{
         return res.status(200).json({
             isFound : true , msg : 'Logged In Successfully'
         })
+       
+
     }catch(e){
         return res.status(400).send(e.message || "Server Error");
     }
