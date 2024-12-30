@@ -18,6 +18,10 @@ const UsersAuthSchema = new mongoose.Schema({
         enum : ['free','basic','premium'],
         default : 'free'
     },
+    isVerified : {
+        type : Boolean ,
+        default : false
+    },
     Cards : [{
         type : mongoose.Schema.Types.ObjectId,
         ref : 'digimodel'

@@ -68,7 +68,7 @@
 #login-input-div div label {
   position: absolute;
   top: 50%;
-  padding-left: 50px;
+  padding-left: 40px;
   transform: translateY(-50%);
   margin: unset;
   color: #9b9696;
@@ -95,7 +95,7 @@
   width: 90%;
   height: 55px;
   background: transparent;
-  padding: 0px 0 0 50px;
+  padding: 0px 0 0 40px;
 }
 #forgot-pass-txt {
   width: 80%;
