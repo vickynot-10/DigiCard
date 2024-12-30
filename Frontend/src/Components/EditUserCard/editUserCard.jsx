@@ -23,6 +23,7 @@ export default function EditUserCard() {
     isErr: false,
     msg: " ",
   });
+  
 
   const [isLoading, setLoading] = useState(true);
 
@@ -75,6 +76,7 @@ export default function EditUserCard() {
           throw new Error("Error occured");
         }
         if (res.data.isFound === true) {
+      
 
           seteditdata({
             isFound: true,

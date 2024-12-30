@@ -4,12 +4,15 @@ import axios from "axios";
 import Loader from "../Reusable_components/Loader/loader";
 import Toaster from "../Reusable_components/Toaster/toaster";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../Contexts/authContext";
 
 export default function EditPage() {
   const { id, companyName } = useParams();
+  const {isLoggedUserin} = useAuth()
   const [btnLoading, setBtnLoading] = useState(false);
   const navigate = useNavigate();
   const [details, setDetails] = useState({ logo: null });
+  console.log('user auth var', isLoggedUserin)
   const [compname, setcompname] = useState("");
   const [editData, seteditdata] = useState({
     data: {},
@@ -77,6 +80,7 @@ export default function EditPage() {
           }
         );
         if (res.data.isfound === true) {
+          console.log("res data",res.data)
           seteditdata({
             isFound: true,
             data: res.data.data1,
@@ -130,6 +134,7 @@ export default function EditPage() {
       );
 
       if (res.data.isEdited === true) {
+        
         setResData({
           isOK: true,
           msg: res.data.msg,
@@ -181,8 +186,12 @@ export default function EditPage() {
                   
                   return null;
                 }
+                if(isLoggedUserin.subscription !== "premium" && (key === 'facebook' || key === 'instagram' ||key === 'twitter' || key === 'linkedin' || key === 'whatsapp' ||key === 'youtube' )){
+                  return null
+                }
                 if (key !== "img") {
                   return (
+                   
                     <div key={key}>
                       <label htmlFor={key}>
                         
