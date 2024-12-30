@@ -6,13 +6,10 @@ import Loader from "../../Reusable_components/Loader/loader";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
-import { useAuth } from "../../../Contexts/authContext";
-import { useNavigate } from "react-router-dom";
 import { AssestsObj } from "../../../Assests/assests.js";
 
 export default function SignUpForm() {
-  const navigate = useNavigate();
-  const { setUserLoggedIn } = useAuth();
+
   const [userdetails, setUserdetails] = useState({
     mail: "",
     username: "",
@@ -88,14 +85,6 @@ export default function SignUpForm() {
           isCreated: true,
           msg: res.data.msg,
         });
-        setUserLoggedIn({
-          isLoggedIn: true,
-          username: userdetails.username,
-        });
-        setTimeout(() => {
-          navigate("/");
-          navigate(0);
-        }, [2000]);
       }
     } catch (e) {
       setresfalse();

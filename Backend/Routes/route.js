@@ -17,6 +17,7 @@ import { UpdateUserDigi } from "../Controllers/UpdateUserDigi.js";
 
 import { SignupDetails } from "../Controllers/Auth/Signup.js";
 import { LoginDetails } from "../Controllers/Auth/Login.js";
+import { VerifyAccount } from "../Controllers/Auth/verifyAcc.js";
 
 import { verifyJWTtoken } from "../Middlewares/verifyJWT.js";
 import { UsersCheckAuth } from "../Controllers/Auth/Userauthcheck.js";
@@ -45,6 +46,8 @@ app.use("/imgs", express.static(path.join(__dirname + "/FileUploads")));
 route.post("/signup", SignupDetails);
 route.post("/login", LoginDetails);
 route.post("/logout", Logout);
+
+route.get('/user/verify/:userID',VerifyAccount)
 
 route.get('/auth/google',passport.authenticate('google',{scope : ['profile','email'] , prompt :'select_account' }  ) );
 route.get('/auth/google/callback' , passport.authenticate('google', { session : false}) ,OauthCreate )

@@ -13,17 +13,23 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-export const sendMail = async( subject ,html)=>{
+export const sendMail = async( subject , to,html)=>{
     try{
         let mailOptions = {
             from : process.env.NODEMAILER_ACC_NAME ,
-            to : process.env.NODEMAILER_TO_ACC,
+            to : to,
             subject : subject ,
             html : html
         }
         const mailSend = await transporter.sendMail(mailOptions);
-        console.log(mailSend);
+        if(mailSend.accepted && mailSend.accepted.length > 0){
+            return "Mail send Successfully"
+        }
+        if(mailSend.rejected && mailSend.rejected > 0){
+          return "Mail not send , Try Again"
+        }
+    
     }catch(e){
-        console.log(e)
+        return "Mail not send , Try Again"
     }
 }
