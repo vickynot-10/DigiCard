@@ -1,8 +1,9 @@
 import { UsersAuthModel } from "../../Models/UsersAuth.js";
 import bcrypt from "bcrypt";
-import { GenerateJWTtoken } from "../../Utils/generateToken.js";
 import { sendMail } from "../../Utils/mailservise.js";
+import { configDotenv } from "dotenv";
 
+configDotenv()
 export const SignupDetails = async (req, res) => {
   let data = req.body;
   let finaldata;
@@ -51,7 +52,7 @@ export const SignupDetails = async (req, res) => {
       data.mail,
       `<h1> Edigicard </h1> 
             <h2>Note : </h2> <p> If you didnt verify within 24 hours your account will be deleted and you need to sign up again </p>
-            <a href='user/verify/${finaldata._id}' target='_blank' rel='referrer noopener' > Click here  </a>
+            <a href='${process.env.BACKEND_URL}/user/verify/${finaldata._id}' target='_blank' rel='referrer noopener' > Click here  </a>
             `
     );
     if (mailAns === "Mail send Successfully") {
