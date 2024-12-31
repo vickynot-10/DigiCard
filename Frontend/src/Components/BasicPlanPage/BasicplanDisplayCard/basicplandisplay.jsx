@@ -6,6 +6,9 @@ import { AssestsObj } from "../../../Assests/assests.js";
 import Loader from "../../Reusable_components/Loader/loader.jsx";
 import Toaster from "../../Reusable_components/Toaster/toaster.jsx";
 import Modal from "../../Reusable_components/Modal/modal.jsx";
+import { QRCodeSVG } from 'qrcode.react';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import Snackbar from "../../Reusable_components/Snackbar/snackbar.jsx";
 
 import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -26,12 +29,20 @@ export default function BasicPlanDisplayDetails() {
     data: {},
     isFound: false,
   });
+  const [showsnack,setsnack] = useState({
+    show : false , msg : ''
+  })
   const [whatsappnum, setWhatappnum] = useState("");
+  const qrcodeEl = useRef(null);
   const { id, companyName } = useParams();
   const [errobjRes, setErrobjRes] = useState({
     isErr: false,
     msg: "",
   });
+
+  const [currentURL,setCurrentURL] = useState({
+    modal : false , url : ''
+  })
 
   const [delRes, setDelRes] = useState({
     isDeleted: false,
@@ -211,8 +222,82 @@ export default function BasicPlanDisplayDetails() {
     }
   }
 
+  function getURL(){
+    setCurrentURL({
+      modal : true , url : decodeURIComponent( window.location.href)
+    })
+  }
+
+  function closeURL(){
+    setCurrentURL({
+      modal : false , url : ''
+    })
+  }
+
+  async function shareQRtoWhatsapp(){
+    if(qrcodeEl.current){
+      const canvas = await html2canvas(qrcodeEl.current);
+      const newFile = await new Promise((resolve) => {
+        canvas.toBlob(resolve, 'image/png');
+      });     
+        const data = {
+          files: [
+            new File([newFile], 'image.png', {
+              type: newFile.type,
+            }),
+          ],
+          title: 'Image',
+          text: 'Check out this',
+        }
+        
+        try{
+          if(!navigator.canShare(data)){
+            console.error("Can't share");
+          }
+          await navigator.share(data)
+      }catch(e){
+        console.log(e)
+      }
+
+    }
+  }
+
+  function copyToClip(){
+    try{
+      navigator.clipboard.writeText(decodeURIComponent(window.location.href));
+      setsnack({
+        show : true , msg : 'Copied to Clipboard'
+      })
+    }catch(e){
+      setsnack({
+        show : true , msg : 'Failed To Copy'
+      })
+    }
+  }
+  function offsnack(){
+    setsnack({
+      msg : '' , show : false
+    })
+  }
+ 
   return (
     <div id="bp-comp-container">
+      {
+        showsnack.show && <Snackbar onClose={offsnack} AutoHideDuration={3000} sbWidth="150px" >
+          <p> {showsnack.msg} </p>
+        </Snackbar>
+      }
+      {
+        currentURL.modal && <Modal onClose={closeURL} modalBoxStyle={{...modalBoxStyle , height : 'auto'}} >
+          <div ref={qrcodeEl} ><QRCodeSVG value={currentURL.url || window.location.href} size={200} />
+          </div>
+          <div id="qr-share-buttons" >
+            <button onClick={shareQRtoWhatsapp} > <WhatsAppIcon /> </button>
+            <button onClick={copyToClip} > <ContentPasteIcon /> </button>
+          </div>
+        </Modal>
+      }
+
       {modalOpen && (
         <Modal 
           headerText="Are you sure that you want to delete ?"
@@ -543,6 +628,16 @@ export default function BasicPlanDisplayDetails() {
                   </div>
 
                   <div id="pdf-download-btn-div" data-html2canvas-ignore="true">
+                  <button
+                      className="button-59"
+                      onClick={getURL}
+                      aria-label="add-user"
+                    >
+                      
+                      Generate QR Code
+                    </button>
+                   
+
                     <button
                       className="button-59"
                       aria-label="download-file"
@@ -562,6 +657,9 @@ export default function BasicPlanDisplayDetails() {
                         Edit
                       </button>
                     </a>
+
+                    
+
                     <button
                       className="button-59"
                       aria-label="add-user"

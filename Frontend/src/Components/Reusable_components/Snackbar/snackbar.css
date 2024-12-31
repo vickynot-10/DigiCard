@@ -1,0 +1,27 @@
+#snackbar-container {
+    position: fixed;
+    z-index: 200;
+  }
+  #snackbar {
+    font-size: clamp(0.765rem, 0.775rem, 0.875rem);
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 4px;
+    justify-content: space-between;
+  }
+  #snackbar-contents {
+    display: inline-block;
+    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #bg-iconbtn{
+    border: unset;
+    background-color: transparent;
+    cursor: pointer;
+  }
