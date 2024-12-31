@@ -1,6 +1,7 @@
 import './home.css';
 import { useNavigate} from 'react-router-dom';
 import Feautures from '../Features/features';
+import FrequentlyAskedQuestions from '../FAQ/faq';
 
 export default function Home(){
     const navigate = useNavigate()
@@ -53,6 +54,9 @@ export default function Home(){
                 </div>
                 <div>
                     <Feautures />
+                </div>
+                <div>
+                    <FrequentlyAskedQuestions />
                 </div>
             </div>
         </div>
