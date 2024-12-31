@@ -1,6 +1,6 @@
 import './home.css';
 import { useNavigate} from 'react-router-dom';
-
+import Feautures from '../Features/features';
 
 export default function Home(){
     const navigate = useNavigate()
@@ -50,6 +50,9 @@ export default function Home(){
                         </div>
 
                     </div>
+                </div>
+                <div>
+                    <Feautures />
                 </div>
             </div>
         </div>
