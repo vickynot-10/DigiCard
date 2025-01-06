@@ -1,7 +1,7 @@
 import "./faq.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { useState } from "react";
+import { useState  } from "react";
 
 export default function FrequentlyAskedQuestions() {
   const [currentIndex, setIndex] = useState({

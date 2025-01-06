@@ -1,16 +1,18 @@
 import "./nav.css";
 import { Link } from "react-router-dom";
-import {  useState } from "react";
+import {   useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAuth } from "../../Contexts/authContext";
 import axios from "axios";
 import Modal from '../Reusable_components/Modal/modal'
 import Toaster from '../Reusable_components/Toaster/toaster'
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
+
 
 export default function NavBar() {
   const navigate = useNavigate()
+ 
   const [showMobileNav, setMobileNav] = useState(false);
   const { isLoggedUserin } = useAuth();
   const [logoutobj,setlogoutobj] = useState({
@@ -69,7 +71,7 @@ function setlogoutfalse(){
       <div id="navbar-div">
         <div id="navbar-main">
           <div>
-            <h1>DigiCard</h1>
+            <h1> DigiCard </h1>
           </div>
           <div id="open-nav-div">
             <button onClick={togglenav} aria-label="open and close menu button">
